@@ -1,0 +1,49 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    background: #fafafa;
+    color: #222;
+}
+header, footer {
+    background: #111;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+}
+nav a {
+    color: #fff;
+    margin: 0 1em;
+    text-decoration: none;
+}
+section {
+    max-width: 700px;
+    margin: 2em auto;
+    padding: 1em;
+    background: #fff;
+    border-radius: 5px;
+}
+.video-container {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+.social-links a {
+    margin-right: 1em;
+    color: #2e64fe;
+    text-decoration: none;
+}
+#contact-form input, #contact-form textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 1em;
+    padding: 0.5em;
+}
+button {
+    background-color: #2e64fe;
+    color: #fff;
+    border: none;
+    padding: 0.75em 1.5em;
+    border-radius: 3px;
+    cursor: pointer;
+}
