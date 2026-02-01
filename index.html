@@ -656,6 +656,1429 @@
 
 
 
+/* NAV LOGIN BUTTON */
+.nav-login-btn {
+  margin-left: 15px;
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: none;
+  background: #fff;
+  color: #ff7e5f;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.nav-login-btn:hover {
+  background: #ff7e5f;
+  color: #fff;
+}
+
+/* MODAL BACKGROUND */
+.auth-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* CARD */
+.auth-card {
+  background: linear-gradient(120deg, #ff7e5f, #feb47b);
+  padding: 30px;
+  width: 360px;
+  border-radius: 18px;
+  text-align: center;
+  color: #fff;
+  animation: popIn 0.4s ease;
+  position: relative;
+}
+
+/* CLOSE */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* TABS */
+.auth-tabs button {
+  background: rgba(255,255,255,0.25);
+  border: none;
+  padding: 10px 25px;
+  border-radius: 20px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 0 5px;
+}
+.auth-tabs .active {
+  background: #fff;
+  color: #ff7e5f;
+}
+
+/* FORMS */
+.auth-form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.auth-form input {
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+}
+.auth-form button {
+  padding: 12px;
+  border-radius: 25px;
+  border: none;
+  background: #fff;
+  color: #ff7e5f;
+  font-weight: 700;
+  cursor: pointer;
+}
+.auth-form button:hover {
+  background: #ff7e5f;
+  color: #fff;
+}
+
+.switch-text {
+  font-size: 0.9em;
+}
+.switch-text span {
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* HIDDEN */
+.hidden {
+  display: none;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+
+/* ===== HEADER BASE ===== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(120deg, #ff7e5f, #feb47b);
+  padding: 14px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  animation: navSlideDown 0.8s ease;
+}
+
+/* ===== LOGO ===== */
+.logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #fff;
+  position: relative;
+  cursor: pointer;
+}
+.logo::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 3px;
+  background: #fff;
+  transition: width 0.4s ease;
+}
+.logo:hover::after {
+  width: 100%;
+}
+
+/* ===== NAVBAR LINKS ===== */
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.navbar a {
+  position: relative;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 6px 0;
+  transition: transform 0.3s ease;
+}
+
+/* underline animation */
+.navbar a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: #fff;
+  transition: all 0.4s ease;
+  transform: translateX(-50%);
+}
+
+.navbar a:hover {
+  transform: translateY(-2px);
+}
+
+.navbar a:hover::after {
+  width: 100%;
+}
+
+/* ===== LOGIN BUTTON ===== */
+.nav-login-btn {
+  padding: 9px 22px;
+  border-radius: 30px;
+  border: none;
+  background: #fff;
+  color: #ff7e5f;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 0 0 rgba(255,255,255,0.7);
+  animation: glowPulse 2.5s infinite;
+  transition: all 0.3s ease;
+}
+
+.nav-login-btn:hover {
+  background: #ff7e5f;
+  color: #fff;
+  transform: translateY(-2px) scale(1.05);
+}
+
+/* ===== SCROLL EFFECT (OPTIONAL) ===== */
+header.scrolled {
+  padding: 10px 40px;
+  background: linear-gradient(120deg, #ff6a4a, #fda085);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes navSlideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.6); }
+  70% { box-shadow: 0 0 0 18px rgba(255,255,255,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+}
+
+
+
+
+/* ===== VIDEO GALLERY SECTION ===== */
+#video-gallery {
+  padding: 80px 40px;
+  background: linear-gradient(180deg, #fff7f2, #ffffff);
+}
+
+/* ===== GRID ===== */
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+}
+
+/* ===== VIDEO CARD ===== */
+.lazy-video-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  overflow: hidden;
+  transform: translateY(30px) scale(0.95);
+  opacity: 0;
+  animation: cardFadeUp 0.6s ease forwards;
+  transition: all 0.35s ease;
+}
+
+/* stagger animation */
+.lazy-video-card:nth-child(1) { animation-delay: 0.1s; }
+.lazy-video-card:nth-child(2) { animation-delay: 0.2s; }
+.lazy-video-card:nth-child(3) { animation-delay: 0.3s; }
+
+/* hover lift */
+.lazy-video-card:hover {
+  transform: translateY(-10px) scale(1.04);
+  box-shadow: 0 25px 50px rgba(255,126,95,0.35);
+}
+
+/* ===== THUMBNAIL ===== */
+.lazy-video-card img {
+  width: 100%;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+}
+
+.lazy-video-card:hover img {
+  transform: scale(1.08);
+}
+
+/* play overlay */
+.lazy-video-card img::after {
+  content: "▶";
+  position: absolute;
+  color: white;
+}
+
+/* ===== TITLE ===== */
+.lazy-video-card h3 {
+  margin: 12px 0 6px;
+  font-size: 1.1rem;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.lazy-video-card:hover h3 {
+  color: #ff7e5f;
+}
+
+/* ===== DESCRIPTION ===== */
+.lazy-video-card p {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* ===== IFRAME ANIMATION ===== */
+.lazy-video-card iframe {
+  border-radius: 14px;
+  animation: zoomIn 0.4s ease;
+}
+
+/* ===== PAGINATION ===== */
+.pagination {
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+.pagination button {
+  padding: 10px 22px;
+  border-radius: 25px;
+  border: none;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.pagination button:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 12px 25px rgba(255,126,95,0.45);
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ===== KEYFRAMES ===== */
+@keyframes cardFadeUp {
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+
+
+
+/* ===== SECTION ===== */
+#video-gallery {
+  padding: 80px 40px;
+  background: #f9fafb;
+}
+
+/* ===== GRID ===== */
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+}
+
+/* ===== CARD ===== */
+.lazy-video-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+  opacity: 0;
+  transform: translateY(12px);
+  animation: professionalFade 0.5s ease forwards;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* subtle stagger */
+.lazy-video-card:nth-child(1) { animation-delay: 0.08s; }
+.lazy-video-card:nth-child(2) { animation-delay: 0.16s; }
+.lazy-video-card:nth-child(3) { animation-delay: 0.24s; }
+
+.lazy-video-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.1);
+}
+
+/* ===== THUMBNAIL ===== */
+.lazy-video-card img,
+.lazy-video-card iframe {
+  width: 100%;
+  height: 180px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* ===== TEXT ===== */
+.lazy-video-card h3 {
+  margin: 14px 0 6px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.lazy-video-card p {
+  font-size: 0.92rem;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+/* ===== PAGINATION ===== */
+.pagination {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+}
+
+.pagination button {
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #374151;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: #f3f4f6;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+
+.pagination button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+#pageInfo {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes professionalFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+
+
+
+
+
+/* ===== CONTACT SECTION ===== */
+.contact-section {
+  padding: 90px 20px;
+  background: linear-gradient(135deg, #fff7ed, #fef3c7);
+  text-align: center;
+  animation: fadeSlideUp 0.9s ease forwards;
+}
+
+.contact-section h2 {
+  font-size: 2.4rem;
+  margin-bottom: 24px;
+  font-weight: 700;
+  color: #1f2937;
+  position: relative;
+}
+
+/* underline animation */
+.contact-section h2::after {
+  content: "";
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #f59e0b, #ea580c);
+  display: block;
+  margin: 12px auto 0;
+  border-radius: 4px;
+  animation: expandLine 1s ease;
+}
+
+/* ===== FORM CARD ===== */
+.contact-section form {
+  max-width: 460px;
+  margin: 40px auto 0;
+  padding: 34px 28px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+  animation: scaleIn 0.7s ease forwards;
+}
+
+/* ===== INPUTS ===== */
+.contact-section input,
+.contact-section textarea {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  outline: none;
+  transition: border 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+}
+
+/* floating feel */
+.contact-section input:focus,
+.contact-section textarea:focus {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245,158,11,0.25);
+  transform: translateY(-2px);
+}
+
+/* ===== BUTTON ===== */
+.contact-section button {
+  margin-top: 10px;
+  padding: 14px;
+  font-size: 1.05rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: #1f2937;
+  background: linear-gradient(90deg, #facc15, #fb923c);
+  box-shadow: 0 10px 30px rgba(251,146,60,0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.contact-section button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(251,146,60,0.5);
+}
+
+/* ===== EMAIL LINK ===== */
+.contact-section p {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #374151;
+  animation: fadeIn 1.2s ease;
+}
+
+.contact-section a {
+  color: #ea580c;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+}
+
+.contact-section a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background: #ea580c;
+  transition: width 0.3s ease;
+}
+
+.contact-section a:hover::after {
+  width: 100%;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes expandLine {
+  from { width: 0; }
+  to { width: 80px; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+
+
+
+
+/* ===== CONTACT SECTION ===== */
+.contact-section {
+  padding: 90px 20px;
+  background: #f9fafb;
+  text-align: center;
+}
+
+/* Section reveal */
+.contact-section {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: sectionReveal 0.8s ease-out forwards;
+}
+
+.contact-section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 18px;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.5px;
+}
+
+/* thin professional divider */
+.contact-section h2::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 2px;
+  background: #d1d5db;
+  margin: 14px auto 0;
+}
+
+/* ===== FORM CARD ===== */
+.contact-section form {
+  max-width: 460px;
+  margin: 40px auto 0;
+  padding: 36px 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+
+  opacity: 0;
+  transform: translateY(18px);
+  animation: cardReveal 0.8s ease-out forwards;
+  animation-delay: 0.15s;
+}
+
+/* ===== INPUTS ===== */
+.contact-section input,
+.contact-section textarea {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-section input:focus,
+.contact-section textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+}
+
+/* ===== BUTTON ===== */
+.contact-section button {
+  margin-top: 10px;
+  padding: 13px;
+  font-size: 0.95rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: #2563eb;
+  color: #ffffff;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-section button:hover {
+  background: #1e40af;
+  box-shadow: 0 6px 18px rgba(37,99,235,0.3);
+}
+
+/* ===== EMAIL TEXT ===== */
+.contact-section p {
+  margin-top: 20px;
+  font-size: 0.95rem;
+  color: #374151;
+  opacity: 0;
+  animation: fadeIn 0.6s ease forwards;
+  animation-delay: 0.45s;
+}
+
+.contact-section a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.contact-section a:hover {
+  text-decoration: underline;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes sectionReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+
+
+
+
+
+
+
+
+/* ============================= */
+/* CONTACT SECTION – PREMIUM UI */
+/* ============================= */
+
+.contact-section {
+  position: relative;
+  padding: 100px 20px;
+  background: linear-gradient(180deg, #f9fafb, #ffffff);
+  text-align: center;
+  overflow: hidden;
+}
+
+/* subtle animated background glow */
+.contact-section::before {
+  content: "";
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(37,99,235,0.15), transparent 70%);
+  animation: slowFloat 10s ease-in-out infinite;
+  z-index: 0;
+}
+
+.contact-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== TITLE ===== */
+.contact-section h2 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.6px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.7s ease forwards;
+}
+
+/* elegant divider */
+.contact-section h2::after {
+  content: "";
+  width: 70px;
+  height: 3px;
+  background: linear-gradient(90deg, #2563eb, #60a5fa);
+  display: block;
+  margin: 16px auto 0;
+  border-radius: 3px;
+  animation: lineGrow 0.6s ease forwards;
+}
+
+/* ===== FORM CARD ===== */
+.contact-section form {
+  max-width: 480px;
+  margin: 48px auto 0;
+  padding: 38px 32px;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  border: 1px solid rgba(229,231,235,0.9);
+  box-shadow: 
+    0 30px 60px rgba(0,0,0,0.12),
+    0 10px 24px rgba(0,0,0,0.05);
+
+  opacity: 0;
+  transform: translateY(24px);
+  animation: cardLift 0.8s ease forwards;
+  animation-delay: 0.2s;
+}
+
+/* ===== INPUTS ===== */
+.contact-section input,
+.contact-section textarea {
+  width: 100%;
+  padding: 15px 18px;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  outline: none;
+  transition: 
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+.contact-section input:focus,
+.contact-section textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37,99,235,0.15);
+  transform: translateY(-1px);
+}
+
+/* ===== BUTTON ===== */
+.contact-section button {
+  margin-top: 14px;
+  padding: 14px;
+  font-size: 0.95rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: #ffffff;
+  box-shadow: 0 12px 30px rgba(37,99,235,0.4);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.contact-section button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 45px rgba(37,99,235,0.55);
+}
+
+/* ===== EMAIL TEXT ===== */
+.contact-section p {
+  margin-top: 24px;
+  font-size: 0.95rem;
+  color: #374151;
+  opacity: 0;
+  animation: fadeIn 0.6s ease forwards;
+  animation-delay: 0.6s;
+}
+
+.contact-section a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+}
+
+.contact-section a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background: #2563eb;
+  transition: width 0.3s ease;
+}
+
+.contact-section a:hover::after {
+  width: 100%;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardLift {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes lineGrow {
+  from { width: 0; }
+  to { width: 70px; }
+}
+
+@keyframes slowFloat {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, 20px); }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===== ABOUT SECTION ===== */
+.about-section {
+  padding: 100px 20px;
+  background: #ffffff;
+}
+
+.about-container {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* ===== IMAGE CARD ===== */
+.about-image {
+  display: flex;
+  justify-content: center;
+  animation: fadeLeft 0.8s ease forwards;
+}
+
+.about-image img {
+  width: 260px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 18px;
+  background: #ffffff;
+  padding: 8px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.18);
+}
+
+/* ===== CONTENT ===== */
+.about-content {
+  animation: fadeRight 0.8s ease forwards;
+}
+
+.about-content h2 {
+  font-size: 2.4rem;
+  margin-bottom: 18px;
+  color: #111827;
+  font-weight: 700;
+}
+
+.about-content p {
+  font-size: 1rem;
+  color: #374151;
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+/* ===== BUTTONS ===== */
+.about-buttons {
+  margin-top: 24px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.about-buttons .btn {
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #ffffff;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.about-buttons .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+/* Platform colors */
+.btn.instagram { background: linear-gradient(135deg, #f58529, #dd2a7b); }
+.btn.youtube   { background: #ff0000; }
+.btn.linkedin  { background: #0a66c2; }
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .about-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .about-buttons {
+    justify-content: center;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.blog-section {
+  padding: 110px 20px;
+  background: linear-gradient(135deg, #ffffff, #f8fafc);
+  text-align: center;
+}
+
+.blog-section h2 {
+  font-size: 2.7rem;
+  margin-bottom: 10px;
+}
+
+.blog-subtitle {
+  max-width: 700px;
+  margin: 0 auto 60px;
+  color: #4b5563;
+  font-size: 1rem;
+}
+
+.blog-grid {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+/* BLOG CARD */
+.blog-card {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.12);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.blog-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 35px 80px rgba(0,0,0,0.18);
+}
+
+.blog-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* CONTENT */
+.blog-content {
+  padding: 22px;
+  text-align: left;
+}
+
+.blog-tag {
+  display: inline-block;
+  background: #6366f1;
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.blog-content h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.blog-line {
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.blog-content p {
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.read-more {
+  display: inline-block;
+  margin-top: 14px;
+  font-weight: 600;
+  color: #6366f1;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.read-more:hover {
+  transform: translateX(6px);
+}
+
+/* ANIMATION */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .blog-content {
+    text-align: center;
+  }
+}
+
+
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(10px);
+  padding: 14px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: slideDown 0.8s ease;
+}
+
+/* LOGO */
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.logo-area img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(99,102,241,0.6);
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* NAV BUTTONS */
+.nav-btn {
+  padding: 8px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #e5e7eb;
+  font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.15);
+  transition: all 0.35s ease;
+  position: relative;
+}
+
+.nav-btn:hover {
+  color: #fff;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(99,102,241,0.45);
+}
+
+/* LOGIN BUTTON */
+.nav-login-btn {
+  margin-left: 10px;
+  padding: 9px 22px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #fff;
+  transition: all 0.35s ease;
+}
+
+.nav-login-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 30px rgba(34,197,94,0.55);
+}
+
+/* ANIMATION */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #020617, #0f172a);
+  color: #fff;
+  overflow: hidden;
+  padding: 40px 20px;
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 820px;
+  z-index: 2;
+  animation: fadeUp 1s ease forwards;
+}
+
+/* LOGO */
+.hero-logo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 22px;
+  box-shadow: 0 0 40px rgba(99,102,241,0.8);
+  animation: float 4s ease-in-out infinite;
+}
+
+/* TEXT */
+.hero h1 {
+  font-size: 3.2rem;
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+
+.hero h1 span {
+  background: linear-gradient(135deg, #6366f1, #22c55e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  font-size: 1.15rem;
+  color: #cbd5f5;
+  margin-bottom: 34px;
+  line-height: 1.7;
+}
+
+/* CTA BUTTON */
+.btn-cta {
+  display: inline-block;
+  padding: 15px 36px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.35s ease;
+}
+
+.btn-cta:hover {
+  transform: translateY(-5px) scale(1.07);
+  box-shadow: 0 25px 50px rgba(99,102,241,0.6);
+}
+
+/* BACKGROUND BLOB */
+.hero-blob {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, #6366f1, transparent 70%);
+  top: -120px;
+  right: -120px;
+  filter: blur(120px);
+  animation: blobMove 8s infinite alternate ease-in-out;
+  z-index: 1;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes blobMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-80px, 80px);
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.3rem;
+  }
+
+  .hero-logo {
+    width: 95px;
+    height: 95px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -671,31 +2094,59 @@
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">ABHISHEK PANDEY</div>
-    <nav class="navbar">
-      <a href="#home">Home</a>
-      <a href="#video-gallery">Gallery</a>
-      <a href="#about">About</a>
-      <a href="#blog">Blog</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+  
+    <header class="site-header">
+      <div class="logo-area">
+        <img src="https://yt3.googleusercontent.com/oUT6XprFvCysivcE98aE1IL6Za8FQmzGO2Qo-Q_mtjmPM8huM9L47gNAS7KdZmbZEUy3IJUE0dY=s160-c-k-c0x00ffffff-no-rj"
+             alt="Channel Logo">
+        <span>ABHISHEK PANDEY</span>
+      </div>
+    
+      <nav class="navbar">
+        <a class="nav-btn" href="#home">Home</a>
+        <a class="nav-btn" href="#video-gallery">Gallery</a>
+        <a class="nav-btn" href="#about">About</a>
+        <a class="nav-btn" href="#blog">Blog</a>
+        <a class="nav-btn" href="#contact">Contact</a>
+    
+        <button class="nav-login-btn" onclick="openAuth()">Login</button>
+      </nav>
+    </header>
+    
+  
+  
 
   <main>
-<section id="home" class="hero">
-  <div class="hero-content">
-    <h1>Welcome to Abhishek's Channel!</h1>
-    <p>Tech tips, coding inspiration, and latest updates for your learning journey.</p>
-    <a class="btn-cta" 
-       href="https://www.youtube.com/@AbhishekPandey93.p" 
-       target="_blank" 
-       rel="noopener">
-       Watch Videos
-    </a>
-  </div>
-  <div class="hero-blob"></div>
-</section>
+    <section id="home" class="hero">
+      <div class="hero-content">
+    
+        <!-- CHANNEL LOGO -->
+        <img 
+          class="hero-logo"
+          src="https://yt3.googleusercontent.com/oUT6XprFvCysivcE98aE1IL6Za8FQmzGO2Qo-Q_mtjmPM8huM9L47gNAS7KdZmbZEUy3IJUE0dY=s160-c-k-c0x00ffffff-no-rj"
+          alt="Abhishek Pandey Logo"
+        >
+    
+        <h1>Welcome to <span>Abhishek's Channel</span></h1>
+    
+        <p>
+          Learn programming, data structures, web development, and career-focused
+          tech skills with clear explanations and practical examples.
+        </p>
+    
+        <a class="btn-cta" 
+           href="https://www.youtube.com/@AbhishekPandey93.p" 
+           target="_blank" 
+           rel="noopener">
+           ▶ Watch Videos
+        </a>
+    
+      </div>
+    
+      <!-- ANIMATED BACKGROUND BLOB -->
+      <div class="hero-blob"></div>
+    </section>
+    
 
 
     <!-- Modern paginated, lazy-load video gallery -->
@@ -708,58 +2159,285 @@
         <button id="nextPage">Next</button>
       </div>
     </section>
-
     <section id="about" class="about-section">
-      <h2>About Me</h2>
-      <p>Hello! I'm Abhishek Pandey. I'm passionate about sharing technology tips, programming tutorials, and project walkthroughs for learners at every level. Subscribe for high-value video content and join our knowledge community!</p>
-      <div class="social">
-        <a href="https://www.youtube.com/@AbhishekPandey93.p" target="_blank" rel="noopener">YouTube</a>
-        <a href="https://www.instagram.com/abhishekpandey93p.in/ target="_blank" rel="noopener">Instagram</a>
-        <a href="https://www.linkedin.com/in/abhishek-pandey-08939/" target="_blank" rel="noopener">LinkedIn</a>
+      <div class="about-container">
+    
+        <!-- IMAGE -->
+        <div class="about-image">
+          <img src="https://media.licdn.com/dms/image/v2/D4D03AQHYDF2ULRgpuQ/profile-displayphoto-scale_200_200/B4DZrO4XyDKIAY-/0/1764407478703?e=1771459200&v=beta&t=iHZbDXPcqSKFJRjpjc-pMcnzfqBn7mdArUN7JBmdyGE" alt="Abhishek Pandey">
+        </div>
+    
+        <!-- CONTENT -->
+        <div class="about-content">
+          <h2>About Me</h2>
+    
+          <p>
+            Hi, I’m <strong>Abhishek Pandey</strong> — a passionate technology enthusiast,
+            programmer, and content creator focused on simplifying complex concepts
+            in coding, software development, and computer science.
+          </p>
+    
+          <p>
+            I actively create educational content covering <strong>Data Structures,
+            Programming Fundamentals, Web Development</strong>, and real-world
+            problem-solving techniques to help students and beginners grow confidently.
+          </p>
+    
+          <p>
+            My goal is to build a strong learning community where knowledge is shared
+            clearly, practically, and professionally.
+          </p>
+    
+          <!-- SOCIAL BUTTONS -->
+          <div class="about-buttons">
+            <a href="https://www.instagram.com/abhishekpandey93p.in/" target="_blank" class="btn instagram">Instagram</a>
+            <a href="https://www.youtube.com/@AbhishekPandey93.p" target="_blank" class="btn youtube">YouTube</a>
+            <a href="https://www.linkedin.com/in/abhishek-pandey-846160336" target="_blank" class="btn linkedin">LinkedIn</a>
+          </div>
+        </div>
+    
       </div>
     </section>
 
-    <section id="blog">
-      <h2>Blog & News</h2>
-      <div class="blog-cards">
-        <div class="blog-card">
-          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?fit=crop&w=500&q=80" alt="Blog cover">
-          <h3>5 Coding Practices for Beginners</h3>
-          <p>Explore the foundation of efficient programming—clear code, version control, and debugging skills. Perfect for those just starting their journey!</p>
-        </div>
-        <div class="blog-card">
-          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?fit=crop&w=500&q=80" alt="Blog cover">
-          <h3>How to Approach Problem Solving</h3>
-          <p>Break down complex challenges with proven strategies and real-world examples inspired by top software engineers.</p>
-        </div>
-        <div class="blog-card">
-          <img src="https://images.unsplash.com/photo-1482062364825-616fd23b8fc1?fit=crop&w=500&q=80" alt="Blog cover">
-          <h3>Mastering Data Structures in Java</h3>
-          <p>A guide to stacks, queues, and trees explained with visuals—learn how to ace interviews and competitive coding tests.</p>
-        </div>
-        <div class="blog-card">
-          <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?fit=crop&w=500&q=80" alt="Blog cover">
-          <h3>Your Roadmap to Web Development in 2026</h3>
-          <p>What technologies should you learn next? Let’s map out a path for success in a rapidly changing world.</p>
-        </div>
+
+
+
+
+
+    <section id="blog" class="blog-section">
+      <h2>Blog & Insights</h2>
+      <p class="blog-subtitle">
+        Practical coding knowledge, career guidance, and technology insights — explained clearly.
+      </p>
+    
+      <div class="blog-grid">
+    
+        <article class="blog-card">
+          <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?fit=crop&w=800&q=80">
+          <div class="blog-content">
+            <span class="blog-tag">Programming</span>
+            <h3>5 Coding Practices Every Beginner Must Follow</h3>
+            <p class="blog-line">Write clean code, debug smartly, and build long-term coding habits.</p>
+            <p>
+              This blog explains essential programming practices such as code readability,
+              version control, debugging strategies, and consistency that every beginner
+              should adopt to grow faster.
+            </p>
+            <a href="#" class="read-more">Read More →</a>
+          </div>
+        </article>
+    
+        <article class="blog-card">
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?fit=crop&w=800&q=80">
+          <div class="blog-content">
+            <span class="blog-tag">Problem Solving</span>
+            <h3>How to Approach Programming Problems Like a Pro</h3>
+            <p class="blog-line">Think logically, break problems down, and solve confidently.</p>
+            <p>
+              Learn step-by-step problem-solving techniques used in interviews and competitive
+              programming, including pattern recognition, dry runs, and optimization thinking.
+            </p>
+            <a href="#" class="read-more">Read More →</a>
+          </div>
+        </article>
+    
+        <article class="blog-card">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?fit=crop&w=800&q=80">
+          <div class="blog-content">
+            <span class="blog-tag">DSA</span>
+            <h3>Mastering Data Structures for Interviews</h3>
+            <p class="blog-line">Understand concepts deeply instead of memorizing solutions.</p>
+            <p>
+              This guide covers arrays, linked lists, stacks, queues, trees, and graphs with
+              practical examples and interview-focused preparation strategies.
+            </p>
+            <a href="#" class="read-more">Read More →</a>
+          </div>
+        </article>
+    
+        <article class="blog-card">
+          <img src="https://images.unsplash.com/photo-1482062364825-616fd23b8fc1?fit=crop&w=800&q=80">
+          <div class="blog-content">
+            <span class="blog-tag">Career</span>
+            <h3>Your Web Development Roadmap for 2026</h3>
+            <p class="blog-line">What to learn, what to skip, and how to stay industry-ready.</p>
+            <p>
+              Explore modern tools, frameworks, and career strategies that will help you
+              become a job-ready web developer in the coming years.
+            </p>
+            <a href="#" class="read-more">Read More →</a>
+          </div>
+        </article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <article class="blog-card">
+          <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?fit=crop&w=800&q=80">
+          <div class="blog-content">
+            <span class="blog-tag">Programming</span>
+            <h3>Why Clean Code Matters More Than Speed</h3>
+            <p class="blog-line">Readable code saves time, effort, and future bugs.</p>
+            <p>
+              Clean code improves collaboration, debugging, and scalability. This blog
+              explains naming conventions, formatting, and structure for long-term success.
+            </p>
+            <a href="#" class="read-more">Read More →</a>
+          </div>
+        </article>
+        
+        <article class="blog-card">
+          <img src="https://images.unsplash.com/photo-1526378722443-4c63a5e0b0d7?fit=crop&w=800&q=80">
+          <div class="blog-content">
+            <span class="blog-tag">DSA</span>
+            <h3>Arrays vs Linked Lists Explained Simply</h3>
+            <p class="blog-line">Understand memory, access speed, and real use cases.</p>
+            <p>
+              Learn when to use arrays and when linked lists are a better choice with
+              simple examples and interview-oriented explanations.
+            </p>
+            <a href="#" class="read-more">Read More →</a>
+          </div>
+        </article>
+        
+        <article class="blog-card">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?fit=crop&w=800&q=80">
+          <div class="blog-content">
+            <span class="blog-tag">Career</span>
+            <h3>How to Build a Strong Coding Resume</h3>
+            <p class="blog-line">Projects matter more than certificates.</p>
+            <p>
+              This blog explains how to highlight projects, GitHub activity, and technical
+              skills to stand out during placements and job applications.
+            </p>
+            <a href="#" class="read-more">Read More →</a>
+          </div>
+        </article>
+        
+        <article class="blog-card">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?fit=crop&w=800&q=80">
+          <div class="blog-content">
+            <span class="blog-tag">Web Dev</span>
+            <h3>Frontend vs Backend: What Should You Learn First?</h3>
+            <p class="blog-line">Choose the right path based on your goals.</p>
+            <p>
+              A beginner-friendly comparison of frontend and backend development to help
+              you decide where to start and how to grow.
+            </p>
+            <a href="#" class="read-more">Read More →</a>
+          </div>
+        </article>
+        
+        <article class="blog-card">
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?fit=crop&w=800&q=80">
+          <div class="blog-content">
+            <span class="blog-tag">Problem Solving</span>
+            <h3>How to Think Logically in Coding</h3>
+            <p class="blog-line">Strong logic beats memorized solutions.</p>
+            <p>
+              Learn how to break problems into smaller steps, identify patterns, and
+              approach coding challenges with confidence.
+            </p>
+            <a href="#" class="read-more">Read More →</a>
+          </div>
+        </article>
+        
+        <article class="blog-card">
+          <img src="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?fit=crop&w=800&q=80">
+          <div class="blog-content">
+            <span class="blog-tag">Tools</span>
+            <h3>Top Developer Tools Every Programmer Should Use</h3>
+            <p class="blog-line">Write better code using the right tools.</p>
+            <p>
+              Discover essential tools like VS Code extensions, Git, debuggers, and browser
+              dev tools to boost productivity.
+            </p>
+            <a href="#" class="read-more">Read More →</a>
+          </div>
+        </article>
+        
+        <article class="blog-card">
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?fit=crop&w=800&q=80">
+          <div class="blog-content">
+            <span class="blog-tag">DSA</span>
+            <h3>Understanding Time & Space Complexity</h3>
+            <p class="blog-line">Why Big-O matters in interviews.</p>
+            <p>
+              A simple explanation of time and space complexity with real examples to help
+              you write optimized and efficient code.
+            </p>
+            <a href="#" class="read-more">Read More →</a>
+          </div>
+        </article>
+        
+        <article class="blog-card">
+          <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?fit=crop&w=800&q=80">
+          <div class="blog-content">
+            <span class="blog-tag">Learning</span>
+            <h3>How to Stay Consistent While Learning Coding</h3>
+            <p class="blog-line">Consistency beats motivation every time.</p>
+            <p>
+              Learn realistic study plans, daily habits, and mindset strategies that help
+              you stay consistent and avoid burnout.
+            </p>
+            <a href="#" class="read-more">Read More →</a>
+          </div>
+        </article>
+        
+        <article class="blog-card">
+          <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?fit=crop&w=800&q=80">
+          <div class="blog-content">
+            <span class="blog-tag">Interviews</span>
+            <h3>Common Coding Interview Mistakes</h3>
+            <p class="blog-line">Avoid these errors to boost your success rate.</p>
+            <p>
+              This blog highlights common mistakes candidates make during coding interviews
+              and how to fix them effectively.
+            </p>
+            <a href="#" class="read-more">Read More →</a>
+          </div>
+        </article>
+        
+        <article class="blog-card">
+          <img src="https://images.unsplash.com/photo-1504805572947-34fad45aed93?fit=crop&w=800&q=80">
+          <div class="blog-content">
+            <span class="blog-tag">Career</span>
+            <h3>How to Get Your First Tech Internship</h3>
+            <p class="blog-line">A practical guide for students and beginners.</p>
+            <p>
+              Learn how to prepare projects, apply strategically, and crack technical
+              rounds to land your first internship.
+            </p>
+            <a href="#" class="read-more">Read More →</a>
+          </div>
+        </article>
+        
+    
       </div>
     </section>
+    
+    
+   
 
 
 
+<!-- AUTH MODAL -->
+<div id="authModal" class="auth-modal">
+  <div class="auth-card">
+    <span class="close-btn" onclick="closeAuth()">×</span>
 
-
-
-
-
-
-<section id="auth" class="contact-section">
-  <h2>Account Access</h2>
-
-  <div class="auth-box">
     <div class="auth-tabs">
-      <button id="loginTab" class="active">Login</button>
-      <button id="signupTab">Sign Up</button>
+      <button id="loginTab" class="active" onclick="showLogin()">Login</button>
+      <button id="signupTab" onclick="showSignup()">Sign Up</button>
     </div>
 
     <!-- LOGIN FORM -->
@@ -767,17 +2445,23 @@
       <input type="email" placeholder="Email" required>
       <input type="password" placeholder="Password" required>
       <button type="submit">Login</button>
+      <p class="switch-text">
+        New here? <span onclick="showSignup()">Create account</span>
+      </p>
     </form>
 
-    <!-- SIGN UP FORM -->
+    <!-- SIGNUP FORM -->
     <form id="signupForm" class="auth-form hidden">
       <input type="text" placeholder="Full Name" required>
       <input type="email" placeholder="Email" required>
-      <input type="password" placeholder="Create Password" required>
-      <button type="submit">Create Account</button>
+      <input type="password" placeholder="Password" required>
+      <button type="submit">Sign Up</button>
+      <p class="switch-text">
+        Already have an account? <span onclick="showLogin()">Login</span>
+      </p>
     </form>
   </div>
-</section>
+</div>
 
 
 
@@ -889,7 +2573,7 @@ function openIntroVideo() {
 
   <p style="text-align:center; margin-top:12px; font-weight:600;">
     📧 Or email me directly at  
-    <a href="mailto:abhishekpandit@gmail.com">abhishekpandit@gmail.com</a>
+    <a href="mailto:abhishekpandit08939@gmail.com">abhishekpandit08939@gmail.com</a>
   </p>
 </section>
 
@@ -1023,6 +2707,49 @@ function openIntroVideo() {
     signupForm.classList.remove("hidden");
     loginForm.classList.add("hidden");
   };
+
+
+  function openAuth() {
+    document.getElementById("authModal").style.display = "flex";
+  }
+
+  function closeAuth() {
+    document.getElementById("authModal").style.display = "none";
+  }
+
+  function showLogin() {
+    document.getElementById("loginForm").classList.remove("hidden");
+    document.getElementById("signupForm").classList.add("hidden");
+    document.getElementById("loginTab").classList.add("active");
+    document.getElementById("signupTab").classList.remove("active");
+  }
+
+  function showSignup() {
+    document.getElementById("signupForm").classList.remove("hidden");
+    document.getElementById("loginForm").classList.add("hidden");
+    document.getElementById("signupTab").classList.add("active");
+    document.getElementById("loginTab").classList.remove("active");
+  }
+
+  // DEMO FUNCTIONALITY
+  document.getElementById("loginForm").onsubmit = e => {
+    e.preventDefault();
+    alert("Login successful (demo)");
+    closeAuth();
+  };
+
+  document.getElementById("signupForm").onsubmit = e => {
+    e.preventDefault();
+    alert("Account created (demo)");
+    showLogin();
+  };
+</script>
+
+
+
+
+
+
 </script>
 
 </body>
