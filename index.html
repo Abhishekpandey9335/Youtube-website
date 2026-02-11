@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ABHISHEK PANDEY</title>
+  <title>AP_Code</title>
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -11,29 +11,34 @@
   
   <header class="site-header">
     <div class="logo-area">
-      <img src="https://yt3.googleusercontent.com/oUT6XprFvCysivcE98aE1IL6Za8FQmzGO2Qo-Q_mtjmPM8huM9L47gNAS7KdZmbZEUy3IJUE0dY=s160-c-k-c0x00ffffff-no-rj"
+      <img src="https://yt3.googleusercontent.com/yWaXXHwO3P82WAwIjPIi8chvUdxW_bRWCDpzb_uSJpGJp5yCEb2S7R4POS-TkTvm2Bs2GCyoLA=s160-c-k-c0x00ffffff-no-rj"
            alt="Channel Logo">
-      <span>ABHISHEK PANDEY</span>
+      <span>AP_Code</span>
     </div>
   
-    <nav class="navbar">
-      <!-- Hamburger Menu for all nav links -->
-      <input type="checkbox" id="menu-toggle">
-      <label for="menu-toggle" class="hamburger">
-        &#9776; <!-- 3-bar icon -->
-      </label>
-  
-      <div class="nav-links">
-        <a class="nav-btn" href="#home">Home</a>
-        <a class="nav-btn" href="#video-gallery">Gallery</a>
-        <a class="nav-btn" href="#about">About</a>
-        <a class="nav-btn" href="#blog">Blog</a>
-        <a class="nav-btn" href="#contact">Contact</a>
-      </div>
-  
-      <!-- Login button stays separate -->
-      <button class="nav-login-btn" onclick="openAuth()">Login</button>
-    </nav>
+ <nav class="navbar-pro">
+  <div class="nav-brand">AP</div>
+
+  <input type="checkbox" id="menu-toggle">
+
+  <label for="menu-toggle" class="hamburger-pro">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+
+  <div class="nav-links-pro">
+    <a href="#home">Home</a>
+    <a href="#video-gallery">Gallery</a>
+    <a href="#courses">Courses</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <button class="login-btn-pro" onclick="openAuth()">Login</button>
+</nav>
+
+
   </header>
   
     
@@ -71,7 +76,7 @@
       </ul>
 
       <div class="hero-actions">
-        <a href="https://www.youtube.com/@AbhishekPandey93.p"
+        <a href="	https://www.youtube.com/@AP_Code93.p"
            target="_blank"
            class="btn-primary">
           View Learning Content
@@ -84,10 +89,21 @@
 
     </div>
 
+
+
+
+
+
+
+
+
+
+
+
     <!-- RIGHT VISUAL -->
     <div class="hero-visual">
       <img
-        src="https://yt3.googleusercontent.com/oUT6XprFvCysivcE98aE1IL6Za8FQmzGO2Qo-Q_mtjmPM8huM9L47gNAS7KdZmbZEUy3IJUE0dY=s160-c-k-c0x00ffffff-no-rj"
+        src="https://yt3.googleusercontent.com/yWaXXHwO3P82WAwIjPIi8chvUdxW_bRWCDpzb_uSJpGJp5yCEb2S7R4POS-TkTvm2Bs2GCyoLA=s160-c-k-c0x00ffffff-no-rj"
         alt="Abhishek Pandey"
       >
       <div class="visual-glow"></div>
@@ -106,7 +122,7 @@
 
     <!-- Modern paginated, lazy-load video gallery -->
     <section id="video-gallery">
-      <h2>Video Gallery</h2>
+      <h2>Demo Lectures</h2>
       <div class="gallery-container" id="gallery"></div>
       <div class="pagination">
         <button id="prevPage">Prev</button>
@@ -114,273 +130,189 @@
         <button id="nextPage">Next</button>
       </div>
     </section>
-    <section id="about" class="about-section">
-      <div class="about-container">
-    
-        <!-- IMAGE -->
-        <div class="about-image">
-          <img src="https://media.licdn.com/dms/image/v2/D4D03AQHYDF2ULRgpuQ/profile-displayphoto-scale_200_200/B4DZrO4XyDKIAY-/0/1764407478703?e=1771459200&v=beta&t=iHZbDXPcqSKFJRjpjc-pMcnzfqBn7mdArUN7JBmdyGE" alt="Abhishek Pandey">
-        </div>
-    
-        <!-- CONTENT -->
-        <div class="about-content">
-          <h2>About Me</h2>
-    
-          <p>
-            Hi, I’m <strong>Abhishek Pandey</strong> — a passionate technology enthusiast,
-            programmer, and content creator focused on simplifying complex concepts
-            in coding, software development, and computer science.
-          </p>
-    
-          <p>
-            I actively create educational content covering <strong>Data Structures,
-            Programming Fundamentals, Web Development</strong>, and real-world
-            problem-solving techniques to help students and beginners grow confidently.
-          </p>
-    
-          <p>
-            My goal is to build a strong learning community where knowledge is shared
-            clearly, practically, and professionally.
-          </p>
-    
-          <!-- SOCIAL BUTTONS -->
-          <div class="about-buttons">
-            <a href="https://www.instagram.com/abhishekpandey93p.in/" target="_blank" class="btn instagram">Instagram</a>
-            <a href="https://www.youtube.com/@AbhishekPandey93.p" target="_blank" class="btn youtube">YouTube</a>
-            <a href="https://www.linkedin.com/in/abhishek-pandey-846160336" target="_blank" class="btn linkedin">LinkedIn</a>
-          </div>
-        </div>
-    
-      </div>
-    </section>
 
 
 
 
 
 
-    <section id="blog" class="blog-section">
-      <h2>Blog & Insights</h2>
-      <p class="blog-subtitle">
-        Practical coding knowledge, career guidance, and technology insights — explained clearly.
+
+
+
+
+
+<!-- COURSES SECTION -->
+<section id="courses" class="courses-section">
+  <h2>Courses & Learning Paths</h2>
+  <p class="courses-subtitle">
+    Structured courses with video lectures, notes, and practice material.
+  </p>
+
+  <div class="courses-grid">
+
+    <!-- COURSE CARD -->
+    <div class="course-card">
+      <h3>Java Programming (Beginner to Advanced)</h3>
+      <p class="course-desc">
+        Learn Java from scratch with clear explanations, real examples, and interview-focused concepts.
       </p>
-    
-      <div class="blog-grid">
-    
-        <article class="blog-card">
-          <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?fit=crop&w=800&q=80">
-          <div class="blog-content">
-            <span class="blog-tag">Programming</span>
-            <h3>5 Coding Practices Every Beginner Must Follow</h3>
-            <p class="blog-line">Write clean code, debug smartly, and build long-term coding habits.</p>
-            <p>
-              This blog explains essential programming practices such as code readability,
-              version control, debugging strategies, and consistency that every beginner
-              should adopt to grow faster.
-            </p>
-            <a href="#" class="read-more">Read More →</a>
-          </div>
-        </article>
-    
-        <article class="blog-card">
-          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?fit=crop&w=800&q=80">
-          <div class="blog-content">
-            <span class="blog-tag">Problem Solving</span>
-            <h3>How to Approach Programming Problems Like a Pro</h3>
-            <p class="blog-line">Think logically, break problems down, and solve confidently.</p>
-            <p>
-              Learn step-by-step problem-solving techniques used in interviews and competitive
-              programming, including pattern recognition, dry runs, and optimization thinking.
-            </p>
-            <a href="#" class="read-more">Read More →</a>
-          </div>
-        </article>
-    
-        <article class="blog-card">
-          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?fit=crop&w=800&q=80">
-          <div class="blog-content">
-            <span class="blog-tag">DSA</span>
-            <h3>Mastering Data Structures for Interviews</h3>
-            <p class="blog-line">Understand concepts deeply instead of memorizing solutions.</p>
-            <p>
-              This guide covers arrays, linked lists, stacks, queues, trees, and graphs with
-              practical examples and interview-focused preparation strategies.
-            </p>
-            <a href="#" class="read-more">Read More →</a>
-          </div>
-        </article>
-    
-        <article class="blog-card">
-          <img src="https://images.unsplash.com/photo-1482062364825-616fd23b8fc1?fit=crop&w=800&q=80">
-          <div class="blog-content">
-            <span class="blog-tag">Career</span>
-            <h3>Your Web Development Roadmap for 2026</h3>
-            <p class="blog-line">What to learn, what to skip, and how to stay industry-ready.</p>
-            <p>
-              Explore modern tools, frameworks, and career strategies that will help you
-              become a job-ready web developer in the coming years.
-            </p>
-            <a href="#" class="read-more">Read More →</a>
-          </div>
-        </article>
+
+      <ul class="course-features">
+        <li>📺 25+ Video Lectures</li>
+        <li>📄 Downloadable Notes (PDF)</li>
+        <li>🧠 Practice Questions</li>
+      </ul>
+
+      <div class="course-actions">
+   <a href="auth.html?course=java" class="btn-primary">View Lectures</a>
 
 
+  
 
 
-
-
-
-
-
-
-
-
-
-        <article class="blog-card">
-          <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?fit=crop&w=800&q=80">
-          <div class="blog-content">
-            <span class="blog-tag">Programming</span>
-            <h3>Why Clean Code Matters More Than Speed</h3>
-            <p class="blog-line">Readable code saves time, effort, and future bugs.</p>
-            <p>
-              Clean code improves collaboration, debugging, and scalability. This blog
-              explains naming conventions, formatting, and structure for long-term success.
-            </p>
-            <a href="#" class="read-more">Read More →</a>
-          </div>
-        </article>
-        
-        <article class="blog-card">
-          <img src="https://images.unsplash.com/photo-1526378722443-4c63a5e0b0d7?fit=crop&w=800&q=80">
-          <div class="blog-content">
-            <span class="blog-tag">DSA</span>
-            <h3>Arrays vs Linked Lists Explained Simply</h3>
-            <p class="blog-line">Understand memory, access speed, and real use cases.</p>
-            <p>
-              Learn when to use arrays and when linked lists are a better choice with
-              simple examples and interview-oriented explanations.
-            </p>
-            <a href="#" class="read-more">Read More →</a>
-          </div>
-        </article>
-        
-        <article class="blog-card">
-          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?fit=crop&w=800&q=80">
-          <div class="blog-content">
-            <span class="blog-tag">Career</span>
-            <h3>How to Build a Strong Coding Resume</h3>
-            <p class="blog-line">Projects matter more than certificates.</p>
-            <p>
-              This blog explains how to highlight projects, GitHub activity, and technical
-              skills to stand out during placements and job applications.
-            </p>
-            <a href="#" class="read-more">Read More →</a>
-          </div>
-        </article>
-        
-        <article class="blog-card">
-          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?fit=crop&w=800&q=80">
-          <div class="blog-content">
-            <span class="blog-tag">Web Dev</span>
-            <h3>Frontend vs Backend: What Should You Learn First?</h3>
-            <p class="blog-line">Choose the right path based on your goals.</p>
-            <p>
-              A beginner-friendly comparison of frontend and backend development to help
-              you decide where to start and how to grow.
-            </p>
-            <a href="#" class="read-more">Read More →</a>
-          </div>
-        </article>
-        
-        <article class="blog-card">
-          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?fit=crop&w=800&q=80">
-          <div class="blog-content">
-            <span class="blog-tag">Problem Solving</span>
-            <h3>How to Think Logically in Coding</h3>
-            <p class="blog-line">Strong logic beats memorized solutions.</p>
-            <p>
-              Learn how to break problems into smaller steps, identify patterns, and
-              approach coding challenges with confidence.
-            </p>
-            <a href="#" class="read-more">Read More →</a>
-          </div>
-        </article>
-        
-        <article class="blog-card">
-          <img src="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?fit=crop&w=800&q=80">
-          <div class="blog-content">
-            <span class="blog-tag">Tools</span>
-            <h3>Top Developer Tools Every Programmer Should Use</h3>
-            <p class="blog-line">Write better code using the right tools.</p>
-            <p>
-              Discover essential tools like VS Code extensions, Git, debuggers, and browser
-              dev tools to boost productivity.
-            </p>
-            <a href="#" class="read-more">Read More →</a>
-          </div>
-        </article>
-        
-        <article class="blog-card">
-          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?fit=crop&w=800&q=80">
-          <div class="blog-content">
-            <span class="blog-tag">DSA</span>
-            <h3>Understanding Time & Space Complexity</h3>
-            <p class="blog-line">Why Big-O matters in interviews.</p>
-            <p>
-              A simple explanation of time and space complexity with real examples to help
-              you write optimized and efficient code.
-            </p>
-            <a href="#" class="read-more">Read More →</a>
-          </div>
-        </article>
-        
-        <article class="blog-card">
-          <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?fit=crop&w=800&q=80">
-          <div class="blog-content">
-            <span class="blog-tag">Learning</span>
-            <h3>How to Stay Consistent While Learning Coding</h3>
-            <p class="blog-line">Consistency beats motivation every time.</p>
-            <p>
-              Learn realistic study plans, daily habits, and mindset strategies that help
-              you stay consistent and avoid burnout.
-            </p>
-            <a href="#" class="read-more">Read More →</a>
-          </div>
-        </article>
-        
-        <article class="blog-card">
-          <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?fit=crop&w=800&q=80">
-          <div class="blog-content">
-            <span class="blog-tag">Interviews</span>
-            <h3>Common Coding Interview Mistakes</h3>
-            <p class="blog-line">Avoid these errors to boost your success rate.</p>
-            <p>
-              This blog highlights common mistakes candidates make during coding interviews
-              and how to fix them effectively.
-            </p>
-            <a href="#" class="read-more">Read More →</a>
-          </div>
-        </article>
-        
-        <article class="blog-card">
-          <img src="https://images.unsplash.com/photo-1504805572947-34fad45aed93?fit=crop&w=800&q=80">
-          <div class="blog-content">
-            <span class="blog-tag">Career</span>
-            <h3>How to Get Your First Tech Internship</h3>
-            <p class="blog-line">A practical guide for students and beginners.</p>
-            <p>
-              Learn how to prepare projects, apply strategically, and crack technical
-              rounds to land your first internship.
-            </p>
-            <a href="#" class="read-more">Read More →</a>
-          </div>
-        </article>
-        
-    
+        <a href="#" class="btn-secondary">Download Notes</a>
       </div>
-    </section>
-    
-    
+    </div>
+
+    <!-- COURSE CARD -->
+    <div class="course-card">
+      <h3>Data Structures & Algorithms (DSA)</h3>
+      <p class="course-desc">
+        Master arrays, linked lists, stacks, queues, trees, and graphs with interview problems.
+      </p>
+
+      <ul class="course-features">
+        <li>📺 40+ Video Lectures</li>
+        <li>📄 Topic-wise Notes</li>
+        <li>💡 LeetCode + GFG Problems</li>
+      </ul>
+
+      <div class="course-actions">
+<a href="auth.html?course=dsa" class="btn-primary">View Lectures</a>
+
+        <a href="#" class="btn-secondary">Download Notes</a>
+      </div>
+    </div>
+
+    <!-- COURSE CARD -->
+    <div class="course-card">
+      <h3>Web Development (HTML, CSS, JS)</h3>
+      <p class="course-desc">
+        Build responsive websites and real-world projects using modern web technologies.
+      </p>
+
+      <ul class="course-features">
+        <li>📺 30+ Video Lectures</li>
+        <li>📄 Project-based Notes</li>
+        <li>🚀 Mini & Major Projects</li>
+      </ul>
+
+      <div class="course-actions">
+        <a href="auth.html?course=web" class="btn-primary">View Lectures</a>
+
+        <a href="#" class="btn-secondary">Download Notes</a>
+      </div>
+    </div>
+
+    <!-- COURSE CARD -->
+    <div class="course-card">
+      <h3>Interview Preparation & Placement</h3>
+      <p class="course-desc">
+        Prepare for technical interviews with problem-solving strategies and mock questions.
+      </p>
+
+      <ul class="course-features">
+        <li>📺 Interview Sessions</li>
+        <li>📄 Resume & Interview Notes</li>
+        <li>🎯 Company-wise Questions</li>
+      </ul>
+
+      <div class="course-actions">
+     <a href="auth.html?course=interview" class="btn-primary">View Lectures</a>
+
+        <a href="#" class="btn-secondary">Download Notes</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+<!-- RATINGS / TESTIMONIALS SECTION -->
+<section id="ratings" class="ratings-section">
+  <h2>What Students Say</h2>
+  <p class="ratings-subtitle">
+    Trusted by learners across India for clear explanations and practical learning.
+  </p>
+
+  <div class="ratings-grid">
+
+    <div class="rating-card">
+      <div class="stars">★★★★★</div>
+      <p>
+        “The Java course explained concepts in a very simple way. 
+        It helped me crack my college practicals and interviews.”
+      </p>
+      <h4>— Rahul Sharma</h4>
+    </div>
+
+    <div class="rating-card">
+      <div class="stars">★★★★★</div>
+      <p>
+        “DSA lectures are gold. I finally understood recursion and trees clearly.
+        Highly recommended for beginners.”
+      </p>
+      <h4>— Neha Verma</h4>
+    </div>
+
+    <div class="rating-card">
+      <div class="stars">★★★★☆</div>
+      <p>
+        “Web development course is very practical. The projects boosted my confidence
+        in HTML, CSS, and JavaScript.”
+      </p>
+      <h4>— Aman Gupta</h4>
+    </div>
+
+    <div class="rating-card">
+      <div class="stars">★★★★★</div>
+      <p>
+        “Interview preparation sessions helped me understand how to approach
+        coding questions in real interviews.”
+      </p>
+      <h4>— Priya Singh</h4>
+    </div>
+
+    <div class="rating-card">
+      <div class="stars">★★★★☆</div>
+      <p>
+        “Best platform for structured learning. The explanations are concise,
+        focused, and beginner-friendly.”
+      </p>
+      <h4>— Saurabh Kumar</h4>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
    
 
 
@@ -434,6 +366,7 @@
 
 
 <script>
+  
   const videoData = [
     { id: "9QJtEuaki1w", title: "Complete Java in One Shot", desc: "Start your coding journey!", thumbnail: "https://i.ytimg.com/an_webp/9QJtEuaki1w/mqdefault_6s.webp?du=3000&sqp=COyH-csG&rs=AOn4CLDY6Vxq6jp4uUGOdOmfFZLtWT8vqA" },
     { id: "25JC2RIEFYY", title: "Complete array in one shot", desc: "Learn Array visually.", thumbnail: "https://i.ytimg.com/an_webp/25JC2RIEFYY/mqdefault_6s.webp?du=3000&sqp=CLbs-MsG&rs=AOn4CLBgxBWt0wadfmQiS_XzccF1SrsZNw" },
@@ -518,30 +451,47 @@ function openIntroVideo() {
 
 
 
-<section id="contact" class="contact-section">
-  <h2>Contact Me</h2>
 
-  <form action="mailto:abhishekpandit08939@gmail.com" method="POST" enctype="text/plain">
-    <input type="text" name="Name" placeholder="Your Name" required>
-    <input type="email" name="Email" placeholder="Your Email" required>
-    <textarea name="Message" placeholder="Your message" required></textarea>
 
-    <button type="submit">Send Email</button>
-  </form>
+<footer class="site-footer">
+  <p>&copy; 2026 ABHISHEK PANDEY | All rights reserved.</p>
 
-  <p style="text-align:center; margin-top:12px; font-weight:600;">
-    📧 Or email me directly at  
-    <a href="mailto:abhishekpandit08939@gmail.com">abhishekpandit08939@gmail.com</a>
-  </p>
-</section>
+  <div class="footer-links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="about.html">About Us</a>
+    <a href="#courses">Courses</a>
+    <a href="terms.html">Terms & Conditions</a>
+    <a href="contact.html">Contact</a>
+  </div>
 
-  </main>
+  <!-- CHAT SECTION -->
+  <div class="footer-chat">
+    <a href="https://www.instagram.com/ap_code93p/"
+       target="_blank"
+       title="Chat with us on Instagram">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
+        alt="Instagram Chat"
+      >
+      <span>Chat with us</span>
+    </a>
+  </div>
+</footer>
 
-  <footer>
-    <p>&copy; 2026 ABHISHEK PANDEY | All rights reserved.</p>
-  </footer>
+
+
+
+
+
+
 
   <script>
+
+  window.location.href = "index.html#contact";
+
+
+
+
     // Contact form handler: AJAX to keep user on page and show result message
     document.getElementById("contactForm").addEventListener("submit", async function(e) {
       e.preventDefault();

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Contact | Abhishek Pandey</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  * {
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #0b1220, #020409 70%);
+    color: #e5e7eb;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* HEADER */
+  .site-header {
+    padding: 18px 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    background: rgba(2,4,9,0.6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo-area span {
+    font-size: 1.2rem;
+    font-weight: 600;
+    background: linear-gradient(90deg, #60a5fa, #38bdf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .nav-btn {
+    padding: 8px 18px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #e5e7eb;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: 0.3s ease;
+  }
+
+  .nav-btn:hover {
+    background: linear-gradient(135deg, #60a5fa, #38bdf8);
+    color: #020409;
+  }
+
+  /* CONTACT SECTION */
+  main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+  }
+
+  .contact-section {
+    width: 100%;
+    max-width: 480px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 18px;
+    padding: 40px 32px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+    animation: fadeUp 0.8s ease;
+  }
+
+  .contact-section h2 {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 2rem;
+    background: linear-gradient(90deg, #60a5fa, #38bdf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  input, textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(0,0,0,0.4);
+    color: #e5e7eb;
+    outline: none;
+    font-size: 0.95rem;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: #94a3b8;
+  }
+
+  textarea {
+    resize: none;
+    min-height: 120px;
+  }
+
+  button {
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 25px;
+    border: none;
+    background: linear-gradient(135deg, #60a5fa, #38bdf8);
+    color: #020409;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(56,189,248,0.45);
+  }
+
+  .email-note {
+    text-align: center;
+    margin-top: 16px;
+    font-weight: 500;
+    color: #cbd5e1;
+    font-size: 0.9rem;
+  }
+
+  .email-note a {
+    color: #38bdf8;
+    text-decoration: none;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 16px;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="logo-area">
+    <span>ABHISHEK PANDEY</span>
+  </div>
+  <nav>
+    <a href="index.html" class="nav-btn">← Back to Home</a>
+  </nav>
+</header>
+
+<main>
+  <section class="contact-section">
+    <h2>Contact Me</h2>
+
+    <form action="mailto:abhishekpandit08939@gmail.com"
+          method="POST"
+          enctype="text/plain">
+      <input type="text" name="Name" placeholder="Your Name" required>
+      <input type="email" name="Email" placeholder="Your Email" required>
+      <textarea name="Message" placeholder="Your message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+
+    <div class="email-note">
+      📧 Or email me directly at<br>
+      <a href="mailto:abhishekpandit08939@gmail.com">
+        abhishekpandit08939@gmail.com
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  &copy; 2026 ABHISHEK PANDEY | All rights reserved.
+</footer>
+
+</body>
+</html>
