@@ -365,8 +365,103 @@
 <!-- VIDEO GALLERY SECTION (Place this AFTER About section and BEFORE Contact section) -->
 
 
+
+
+
+
+
+<footer class="site-footer">
+  <p>&copy; 2026 ABHISHEK PANDEY | All rights reserved.</p>
+
+  <div class="footer-links">
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="about.html">About Us</a>
+    <a href="#courses">Courses</a>
+    <a href="terms.html">Terms & Conditions</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- CHAT SECTION -->
+  <div class="footer-chat">
+    <a href="https://www.instagram.com/ap_code93p/"
+       target="_blank"
+       title="Chat with us on Instagram">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
+        alt="Instagram Chat"
+      >
+      <span>Chat with us</span>
+    </a>
+  </div>
+</footer>
+
+
+
+
+
+
+
+
+  <script>
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function(){
+
+  // =========================
+  // CONTACT FORM HANDLER
+  // =========================
+  const contactForm = document.getElementById("contactForm");
+
+  if(contactForm){
+    contactForm.addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      var form = e.target;
+      var formMsg = document.getElementById("formMsg");
+
+      if(formMsg){
+        formMsg.textContent = "Sending...";
+        formMsg.className = "";
+      }
+
+      var fd = new FormData(form);
+
+      try {
+        let resp = await fetch(form.action, {
+          method: 'POST',
+          body: fd,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (resp.ok) {
+          form.reset();
+          if(formMsg){
+            formMsg.textContent = "Thank you! Your message is sent.";
+            formMsg.className = "successMsg";
+          }
+        } else {
+          if(formMsg){
+            formMsg.textContent = "Error: Could not send. Please try again.";
+            formMsg.className = "errorMsg";
+          }
+        }
+      } catch (err) {
+        if(formMsg){
+          formMsg.textContent = "Network Error!";
+          formMsg.className = "errorMsg";
+        }
+      }
+    });
+  }
+
+});
+</script>
 <script>
-  
   const videoData = [
     { id: "9QJtEuaki1w", title: "Complete Java in One Shot", desc: "Start your coding journey!", thumbnail: "https://i.ytimg.com/an_webp/9QJtEuaki1w/mqdefault_6s.webp?du=3000&sqp=COyH-csG&rs=AOn4CLDY6Vxq6jp4uUGOdOmfFZLtWT8vqA" },
     { id: "25JC2RIEFYY", title: "Complete array in one shot", desc: "Learn Array visually.", thumbnail: "https://i.ytimg.com/an_webp/25JC2RIEFYY/mqdefault_6s.webp?du=3000&sqp=CLbs-MsG&rs=AOn4CLBgxBWt0wadfmQiS_XzccF1SrsZNw" },
@@ -440,159 +535,6 @@ function openIntroVideo() {
       renderGallery(currentPage);
     }
   };
-
-  renderGallery(currentPage);
-</script>
-
-
-
-
-
-
-
-
-
-
-<footer class="site-footer">
-  <p>&copy; 2026 ABHISHEK PANDEY | All rights reserved.</p>
-
-  <div class="footer-links">
-    <a href="privacy.html">Privacy Policy</a>
-    <a href="about.html">About Us</a>
-    <a href="#courses">Courses</a>
-    <a href="terms.html">Terms & Conditions</a>
-    <a href="contact.html">Contact</a>
-  </div>
-
-  <!-- CHAT SECTION -->
-  <div class="footer-chat">
-    <a href="https://www.instagram.com/ap_code93p/"
-       target="_blank"
-       title="Chat with us on Instagram">
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
-        alt="Instagram Chat"
-      >
-      <span>Chat with us</span>
-    </a>
-  </div>
-</footer>
-
-
-
-
-
-
-
-
-  <script>
-
-  window.location.href = "index.html#contact";
-
-
-
-
-    // Contact form handler: AJAX to keep user on page and show result message
-    document.getElementById("contactForm").addEventListener("submit", async function(e) {
-      e.preventDefault();
-      var form = e.target;
-      var formMsg = document.getElementById("formMsg");
-      formMsg.textContent = "Sending...";
-      formMsg.className = "";
-      var fd = new FormData(form);
-      try {
-        let resp = await fetch(form.action, {
-          method: 'POST',
-          body: fd,
-          headers: { 'Accept': 'application/json' }
-        });
-        if (resp.ok) {
-          form.reset();
-          formMsg.textContent = "Thank you! Your message is sent.";
-          formMsg.className = "successMsg";
-        } else {
-          formMsg.textContent = "Error: Could not send. Please try again.";
-          formMsg.className = "errorMsg";
-        }
-      } catch (err) {
-        formMsg.textContent = "Network Error!";
-        formMsg.className = "errorMsg";
-      }
-    });
-
-    // ----- Paginated, lazy video gallery -----
-    const videoData = [
-      { id: "dQw4w9WgXcQ", title: "Intro to Programming Basics", desc: "Start your coding journey with fundamentals!" , thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg" },
-      { id: "kxopViU98Xo", title: "Data Structures Crash Course", desc: "Everything you need for college interviews.", thumbnail: "https://img.youtube.com/vi/kxopViU98Xo/hqdefault.jpg" },
-      { id: "hY7m5jjJ9mM", title: "What is Recursion?", desc: "Unravel recursion with animations and real examples.", thumbnail: "https://img.youtube.com/vi/hY7m5jjJ9mM/hqdefault.jpg" },
-      { id: "e-ORhEE9VVg", title: "Python vs C++: Which to Learn?", desc: "A quick breakdown for absolute beginners.", thumbnail: "https://img.youtube.com/vi/e-ORhEE9VVg/hqdefault.jpg" },
-      { id: "C0DPdy98e4c", title: "Sorting Algorithms Visualized", desc: "Bubble, Quick, Merge—they're all here, visual and easy.", thumbnail: "https://img.youtube.com/vi/C0DPdy98e4c/hqdefault.jpg" },
-      { id: "3JZ_D3ELwOQ", title: "Mastering Competitive Programming", desc: "Learn how to approach and solve CP problems.", thumbnail: "https://img.youtube.com/vi/3JZ_D3ELwOQ/hqdefault.jpg" },
-      { id: "qH57UWrU3j4", title: "Top 5 Coding Resources in 2025", desc: "Save your time—discover the best places to learn!", thumbnail: "https://img.youtube.com/vi/qH57UWrU3j4/hqdefault.jpg" },
-      { id: "tVj0ZTS4WF4", title: "Live: Solving DSA Challenges", desc: "Watch me tackle LeetCode and GFG problems in real-time.", thumbnail: "https://img.youtube.com/vi/tVj0ZTS4WF4/hqdefault.jpg" },
-      { id: "xvFZjo5PgG0", title: "How to Debug Code like a Pro", desc: "Save hours by learning efficient debugging!", thumbnail: "https://img.youtube.com/vi/xvFZjo5PgG0/hqdefault.jpg" },
-      { id: "QH2-TGUlwu4", title: "Your First Web App in HTML/CSS", desc: "Step by step, no previous experience needed.", thumbnail: "https://img.youtube.com/vi/QH2-TGUlwu4/hqdefault.jpg" },
-      { id: "J---aiyznGQ", title: "5 Mistakes Every Coder Makes", desc: "And how you can avoid them in your practice.", thumbnail: "https://img.youtube.com/vi/J---aiyznGQ/hqdefault.jpg" },
-      { id: "L_jWHffIx5E", title: "How OOP Changed My Approach", desc: "Story-driven learning about object-oriented programming.", thumbnail: "https://img.youtube.com/vi/L_jWHffIx5E/hqdefault.jpg" }
-    ];
-    const pageSize = 6;
-    let currentPage = 1;
-
-    function renderGallery(page) {
-      const gallery = document.getElementById('gallery');
-      gallery.innerHTML = '';
-      const start = (page-1) * pageSize;
-      const end = Math.min(start + pageSize, videoData.length);
-      for (let i = start; i < end; i++) {
-        const vid = videoData[i];
-        const card = document.createElement('div');
-        card.className = 'lazy-video-card';
-        card.innerHTML = `
-          <img src="${vid.thumbnail}" data-video-id="${vid.id}" alt="${vid.title}" class="lazy-video-trigger" loading="lazy">
-          <h3>${vid.title}</h3>
-          <p>${vid.desc}</p>
-        `;
-        gallery.appendChild(card);
-      }
-      attachLazyLoader();
-      updatePagination();
-    }
-    function attachLazyLoader() {
-      document.querySelectorAll('.lazy-video-trigger').forEach(img => {
-        if (!img.dataset.listenerAdded) {
-          img.addEventListener('click', function() {
-            const videoId = img.getAttribute('data-video-id');
-            const iframe = document.createElement('iframe');
-            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-            iframe.width = "100%";
-            iframe.height = "202";
-            iframe.frameBorder = "0";
-            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-            iframe.allowFullscreen = true;
-            iframe.title = img.alt;
-            img.parentNode.replaceChild(iframe, img);
-          });
-          img.dataset.listenerAdded = true;
-        }
-      });
-    }
-    function updatePagination() {
-      document.getElementById('pageInfo').textContent = `Page ${currentPage} of ${Math.ceil(videoData.length / pageSize)}`;
-      document.getElementById('prevPage').disabled = currentPage === 1;
-      document.getElementById('nextPage').disabled = currentPage === Math.ceil(videoData.length / pageSize);
-    }
-    document.getElementById('prevPage').onclick = () => {
-      if (currentPage > 1) {
-        currentPage--;
-        renderGallery(currentPage);
-      }
-    };
-    document.getElementById('nextPage').onclick = () => {
-      if (currentPage * pageSize < videoData.length) {
-        currentPage++;
-        renderGallery(currentPage);
-      }
-    };
     // Initial render
     renderGallery(currentPage);
   </script>
@@ -640,12 +582,23 @@ function openIntroVideo() {
   }
 
   // DEMO FUNCTIONALITY
-  document.getElementById("loginForm").onsubmit = e => {
-    e.preventDefault();
-    alert("Login successful (demo)");
-    closeAuth();
-  };
+ document.getElementById("loginForm").onsubmit = e => {
+  e.preventDefault();
 
+  const email = document.querySelector("#loginForm input[type='email']").value;
+
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+
+  if(!users.includes(email)){
+    users.push(email);
+    localStorage.setItem("users", JSON.stringify(users));
+  }
+
+  localStorage.setItem("currentUser", email);
+
+  alert("Login successful");
+  closeAuth();
+};
   document.getElementById("signupForm").onsubmit = e => {
     e.preventDefault();
     alert("Account created (demo)");
@@ -660,5 +613,76 @@ function openIntroVideo() {
 
 </script>
 
+<script>
+function enterUser(){
+  document.getElementById("rolePage").style.display="none";
+}
+
+function enterAdmin(){
+  window.location.href="admin.html";
+}
+</script>
+<script>
+function enterUser(){
+  document.getElementById("rolePage").style.display="none";
+}
+
+function enterAdmin(){
+  var pass = prompt("Enter Admin Password:");
+
+  if(pass === "abhishek@9495"){
+    window.location.href = "admin.html";
+  } else {
+    alert("Wrong Password");
+  }
+}
+</script>
+
 </body>
+<!-- USER ADMIN FIRST PAGE -->
+<div id="rolePage" style="
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+">
+
+  <div style="
+  background:#111;
+  padding:40px;
+  border-radius:10px;
+  text-align:center;
+  width:350px;
+  color:white;
+  font-family:Arial;
+  ">
+
+    <h2>Welcome to AP_Code</h2>
+
+    <button onclick="enterUser()" style="
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    background:#00c6ff;
+    border:none;
+    cursor:pointer;
+    ">User Section</button>
+
+    <button onclick="enterAdmin()" style="
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    background:#ff4b2b;
+    border:none;
+    cursor:pointer;
+    ">Admin Section</button>
+
+  </div>
+</div>
 </html>

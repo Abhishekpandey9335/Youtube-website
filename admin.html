@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Panel - AP_Code</title>
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:#f4f6f9;
+}
+
+/* NAVBAR */
+.navbar{
+  background:#111;
+  color:white;
+  padding:15px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.navbar h2{
+  margin:0;
+}
+
+.navbar button{
+  background:#ff4b2b;
+  border:none;
+  padding:8px 15px;
+  color:white;
+  cursor:pointer;
+  border-radius:5px;
+}
+
+/* SIDEBAR */
+.sidebar{
+  width:220px;
+  background:#1c1c1c;
+  height:100vh;
+  position:fixed;
+  top:60px;
+  left:0;
+  padding-top:20px;
+}
+
+.sidebar button{
+  width:100%;
+  padding:12px;
+  border:none;
+  background:none;
+  color:white;
+  text-align:left;
+  cursor:pointer;
+}
+
+.sidebar button:hover{
+  background:#333;
+}
+
+/* MAIN CONTENT */
+.content{
+  margin-left:220px;
+  padding:20px;
+  margin-top:60px;
+}
+
+.card{
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 0 10px rgba(0,0,0,0.1);
+  margin-bottom:20px;
+}
+input{
+  padding:8px;
+  margin:5px 0;
+  width:250px;
+}
+button.action{
+  padding:8px 15px;
+  margin-top:5px;
+  cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+  <h2>AP_Code Admin Panel</h2>
+  <button onclick="logout()">Logout</button>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <button onclick="showSection('analysis')">📊 User Analysis</button>
+  <button onclick="showSection('upload')">📤 Upload Videos</button>
+  <button onclick="showSection('control')">👥 User Control</button>
+  <button onclick="showSection('details')">📋 User Details</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="content">
+
+  <!-- USER ANALYSIS -->
+  <div id="analysis" class="card">
+    <h3>User Analysis</h3>
+    <p>Total Users: <span id="totalUsers">0</span></p>
+    <p>Total Videos Uploaded: <span id="totalVideos">0</span></p>
+  </div>
+
+  <!-- UPLOAD VIDEO -->
+  <div id="upload" class="card" style="display:none;">
+    <h3>Upload Video</h3>
+    <input type="text" id="videoTitle" placeholder="Video Title"><br>
+    <input type="text" id="videoURL" placeholder="Video URL"><br>
+    <button class="action" onclick="uploadVideo()">Upload</button>
+    <ul id="videoList"></ul>
+  </div>
+
+  <!-- USER CONTROL -->
+  <div id="control" class="card" style="display:none;">
+    <h3>User Control System</h3>
+    <input type="text" id="newUser" placeholder="Enter Username">
+    <button class="action" onclick="addUser()">Add User</button>
+    <ul id="userList"></ul>
+  </div>
+
+  <!-- USER DETAILS -->
+  <div id="details" class="card" style="display:none;">
+    <h3>User Details</h3>
+    <ul id="detailsList"></ul>
+  </div>
+
+</div>
+
+<script>
+
+/* SECTION SWITCHING */
+function showSection(section){
+  document.getElementById("analysis").style.display="none";
+  document.getElementById("upload").style.display="none";
+  document.getElementById("control").style.display="none";
+  document.getElementById("details").style.display="none";
+
+  document.getElementById(section).style.display="block";
+}
+
+/* LOGOUT */
+function logout(){
+  window.location.href="index.html";
+}
+
+/* GET USERS + VIDEOS */
+function getUsers(){
+  return JSON.parse(localStorage.getItem("users")) || [];
+}
+
+function saveUsers(data){
+  localStorage.setItem("users", JSON.stringify(data));
+}
+
+function getVideos(){
+  return JSON.parse(localStorage.getItem("videos")) || [];
+}
+
+function saveVideos(data){
+  localStorage.setItem("videos", JSON.stringify(data));
+}
+
+/* UPDATE ANALYSIS */
+function updateAnalysis(){
+  let users = getUsers();
+  let videos = getVideos();
+
+  document.getElementById("totalUsers").innerText = users.length;
+  document.getElementById("totalVideos").innerText = videos.length;
+}
+
+/* ADD USER */
+function addUser(){
+  let name = document.getElementById("newUser").value.trim();
+  if(name){
+    let users = getUsers();
+    users.push(name);
+    saveUsers(users);
+    displayUsers();
+    updateAnalysis();
+    document.getElementById("newUser").value="";
+  }
+}
+
+/* DISPLAY USERS */
+function displayUsers(){
+  let users = getUsers();
+
+  let list = document.getElementById("userList");
+  let details = document.getElementById("detailsList");
+
+  list.innerHTML="";
+  details.innerHTML="";
+
+  users.forEach((u,index)=>{
+    list.innerHTML += `<li>${u} 
+      <button onclick="deleteUser(${index})">Delete</button>
+    </li>`;
+
+    details.innerHTML += `<li>User Email: ${u}</li>`;
+  });
+}
+
+/* DELETE USER */
+function deleteUser(index){
+  let users = getUsers();
+  users.splice(index,1);
+  saveUsers(users);
+  displayUsers();
+  updateAnalysis();
+}
+
+/* UPLOAD VIDEO */
+function uploadVideo(){
+  let title = document.getElementById("videoTitle").value.trim();
+  let url = document.getElementById("videoURL").value.trim();
+
+  if(title && url){
+    let videos = getVideos();
+    videos.push({title,url});
+    saveVideos(videos);
+    displayVideos();
+    updateAnalysis();
+    document.getElementById("videoTitle").value="";
+    document.getElementById("videoURL").value="";
+  }
+}
+
+/* DISPLAY VIDEOS */
+function displayVideos(){
+  let videos = getVideos();
+  let list = document.getElementById("videoList");
+  list.innerHTML="";
+  videos.forEach((v)=>{
+    list.innerHTML += `<li>${v.title}</li>`;
+  });
+}
+
+/* INITIAL LOAD */
+displayUsers();
+displayVideos();
+updateAnalysis();
+
+</script>
+
+</body>
+</html>

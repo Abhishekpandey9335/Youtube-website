@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>User Login</title>
+<style>
+body{font-family:Arial;text-align:center;padding:50px;}
+input{display:block;margin:10px auto;padding:10px;width:250px;}
+button{padding:10px 20px;}
+</style>
+</head>
+<body>
+
+<h2>User Login / Register</h2>
+
+<input type="text" id="username" placeholder="Username">
+<input type="password" id="password" placeholder="Password">
+
+<button onclick="register()">Register</button>
+<button onclick="login()">Login</button>
+
+<script>
+function register(){
+  const user=document.getElementById("username").value;
+  const pass=document.getElementById("password").value;
+
+  if(user && pass){
+    localStorage.setItem(user,pass);
+    alert("User Registered!");
+  }else{
+    alert("Fill all fields");
+  }
+}
+
+function login(){
+  const user=document.getElementById("username").value;
+  const pass=document.getElementById("password").value;
+
+  const storedPass=localStorage.getItem(user);
+
+  if(storedPass===pass){
+    alert("Login Successful");
+    window.location.href="index.html";
+  }else{
+    alert("Invalid Credentials");
+  }
+}
+</script>
+<script>
+function userLogin(){
+
+  let email = document.getElementById("email").value;
+
+  if(email){
+
+    // Get existing users
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    // Avoid duplicate entry
+    if(!users.includes(email)){
+        users.push(email);
+        localStorage.setItem("users", JSON.stringify(users));
+    }
+
+    // Save current logged user
+    localStorage.setItem("currentUser", email);
+
+    // Open main website
+    window.location.href = "home.html";
+  }
+}
+</script>
+
+</body>
+</html>
