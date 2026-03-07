@@ -613,6 +613,8 @@ function openIntroVideo() {
 
 </script>
 
+</script>
+
 <script>
 function enterUser(){
   document.getElementById("rolePage").style.display="none";
@@ -622,6 +624,7 @@ function enterAdmin(){
   window.location.href="admin.html";
 }
 </script>
+
 <script>
 function enterUser(){
   document.getElementById("rolePage").style.display="none";
@@ -638,51 +641,203 @@ function enterAdmin(){
 }
 </script>
 
-</body>
-<!-- USER ADMIN FIRST PAGE -->
-<div id="rolePage" style="
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+/* Animated background */
+
+#rolePage{
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100vh;
-background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
 display:flex;
 justify-content:center;
 align-items:center;
+overflow:hidden;
 z-index:9999;
-">
 
-  <div style="
-  background:#111;
-  padding:40px;
-  border-radius:10px;
-  text-align:center;
-  width:350px;
-  color:white;
-  font-family:Arial;
-  ">
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+}
+
+/* floating circles background */
+
+#rolePage::before,
+#rolePage::after{
+content:"";
+position:absolute;
+width:600px;
+height:600px;
+background:radial-gradient(circle,#00c6ff55,transparent 70%);
+animation:float 8s infinite linear;
+}
+
+#rolePage::after{
+right:-200px;
+bottom:-200px;
+animation-delay:4s;
+}
+
+@keyframes float{
+0%{transform:translateY(0px)}
+50%{transform:translateY(-40px)}
+100%{transform:translateY(0px)}
+}
+
+/* Glass card */
+
+.roleCard{
+width:380px;
+padding:45px;
+text-align:center;
+
+background:rgba(255,255,255,0.05);
+border-radius:18px;
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,0.15);
+
+box-shadow:
+0 20px 60px rgba(0,0,0,0.5);
+
+color:white;
+
+animation:cardEntrance 1s ease;
+}
+
+@keyframes cardEntrance{
+
+from{
+opacity:0;
+transform:translateY(40px) scale(.95);
+}
+
+to{
+opacity:1;
+transform:translateY(0) scale(1);
+}
+
+}
+
+/* Title */
+
+.roleCard h2{
+font-size:28px;
+margin-bottom:10px;
+letter-spacing:1px;
+}
+
+.subtitle{
+font-size:14px;
+opacity:.7;
+margin-bottom:30px;
+}
+
+/* Buttons */
+
+.roleBtn{
+width:100%;
+padding:14px;
+margin:12px 0;
+border:none;
+border-radius:10px;
+font-size:15px;
+font-weight:600;
+cursor:pointer;
+position:relative;
+overflow:hidden;
+transition:.35s;
+color:white;
+}
+
+/* User button */
+
+.userBtn{
+background:linear-gradient(135deg,#00c6ff,#0072ff);
+box-shadow:0 10px 25px rgba(0,114,255,.4);
+}
+
+.userBtn:hover{
+transform:translateY(-3px);
+box-shadow:0 18px 35px rgba(0,114,255,.6);
+}
+
+/* Admin button */
+
+.adminBtn{
+background:linear-gradient(135deg,#ff416c,#ff4b2b);
+box-shadow:0 10px 25px rgba(255,75,43,.4);
+}
+
+.adminBtn:hover{
+transform:translateY(-3px);
+box-shadow:0 18px 35px rgba(255,75,43,.6);
+}
+
+/* Button ripple animation */
+
+.roleBtn::after{
+content:"";
+position:absolute;
+width:0;
+height:0;
+background:rgba(255,255,255,.4);
+border-radius:50%;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+opacity:0;
+transition:.6s;
+}
+
+.roleBtn:active::after{
+width:300px;
+height:300px;
+opacity:0;
+}
+
+/* Footer text */
+
+.footer{
+margin-top:20px;
+font-size:12px;
+opacity:.5;
+}
+
+</style>
+
+</body>
+
+<!-- USER ADMIN FIRST PAGE -->
+
+<div id="rolePage">
+
+  <div class="roleCard">
 
     <h2>Welcome to AP_Code</h2>
+    <div class="subtitle">Choose your access level</div>
 
-    <button onclick="enterUser()" style="
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    background:#00c6ff;
-    border:none;
-    cursor:pointer;
-    ">User Section</button>
+    <button onclick="enterUser()" class="roleBtn userBtn">
+      User
+    </button>
 
-    <button onclick="enterAdmin()" style="
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    background:#ff4b2b;
-    border:none;
-    cursor:pointer;
-    ">Admin Section</button>
+    <button onclick="enterAdmin()" class="roleBtn adminBtn">
+     Admin
+    </button>
+
+    <div class="footer">Secure access portal</div>
 
   </div>
+
 </div>
+
+</html>
 </html>

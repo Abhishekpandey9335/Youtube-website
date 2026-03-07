@@ -25,3 +25,11 @@ fetch("http://localhost:8080/api/admin/users", {
         list.appendChild(li);
     });
 });
+function extractYouTubeID(url){
+
+let regExp = /(?:youtube\.com.*(?:\?|&)v=|youtu\.be\/)([^&#]+)/;
+
+let match = url.match(regExp);
+
+return match ? match[1] : url;
+}

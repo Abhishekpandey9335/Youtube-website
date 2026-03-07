@@ -3,83 +3,287 @@
 <head>
 <title>Admin Panel - AP_Code</title>
 <style>
-body{
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+*{
   margin:0;
-  font-family:Arial;
-  background:#f4f6f9;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Inter', sans-serif;
+  background:#eef1f6;
 }
 
 /* NAVBAR */
 .navbar{
-  background:#111;
-  color:white;
-  padding:15px 20px;
+  background:#ffffff;
+  padding:15px 30px;
   display:flex;
   justify-content:space-between;
   align-items:center;
+  box-shadow:0 2px 10px rgba(0,0,0,0.08);
+  position:fixed;
+  width:100%;
+  z-index:1000;
 }
 
 .navbar h2{
-  margin:0;
+  font-weight:600;
+  color:#333;
 }
 
 .navbar button{
-  background:#ff4b2b;
+  background:#4f46e5;
   border:none;
-  padding:8px 15px;
+  padding:8px 18px;
   color:white;
   cursor:pointer;
-  border-radius:5px;
+  border-radius:8px;
+  transition:0.3s;
+}
+
+.navbar button:hover{
+  background:#3730a3;
+  transform:translateY(-2px);
 }
 
 /* SIDEBAR */
 .sidebar{
-  width:220px;
-  background:#1c1c1c;
+  width:240px;
+  background:#111827;
   height:100vh;
   position:fixed;
   top:60px;
   left:0;
-  padding-top:20px;
+  padding-top:30px;
 }
 
 .sidebar button{
   width:100%;
-  padding:12px;
+  padding:14px 20px;
   border:none;
   background:none;
-  color:white;
+  color:#cbd5e1;
   text-align:left;
   cursor:pointer;
+  font-size:14px;
+  transition:0.3s;
 }
 
 .sidebar button:hover{
-  background:#333;
+  background:#1f2937;
+  color:white;
+  padding-left:28px;
+}
+
+.sidebar button.active{
+  background:#4f46e5;
+  color:white;
+  border-left:4px solid #fff;
 }
 
 /* MAIN CONTENT */
 .content{
-  margin-left:220px;
-  padding:20px;
-  margin-top:60px;
+  margin-left:240px;
+  padding:30px;
+  margin-top:80px;
 }
 
+/* CARD GRID */
 .card{
-  background:white;
+  background:#ffffff;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.06);
+  margin-bottom:25px;
+  transition:0.3s;
+  animation:fadeIn 0.4s ease;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+}
+
+/* DASHBOARD STATS */
+.stat-box{
+  display:inline-block;
+  width:220px;
   padding:20px;
-  border-radius:10px;
-  box-shadow:0 0 10px rgba(0,0,0,0.1);
-  margin-bottom:20px;
+  background:#f9fafb;
+  border-radius:12px;
+  margin-right:20px;
+  box-shadow:0 3px 10px rgba(0,0,0,0.05);
+  transition:0.3s;
 }
+
+.stat-box:hover{
+  background:#4f46e5;
+  color:white;
+}
+
+/* INPUT */
 input{
-  padding:8px;
-  margin:5px 0;
-  width:250px;
+  padding:10px;
+  margin:8px 0;
+  width:260px;
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  outline:none;
+  transition:0.3s;
 }
+
+input:focus{
+  border-color:#4f46e5;
+  box-shadow:0 0 0 2px rgba(79,70,229,0.2);
+}
+
+/* ACTION BUTTON */
 button.action{
-  padding:8px 15px;
+  padding:8px 18px;
   margin-top:5px;
   cursor:pointer;
+  border:none;
+  border-radius:8px;
+  background:#4f46e5;
+  color:white;
+  transition:0.3s;
+}
+
+button.action:hover{
+  background:#3730a3;
+  transform:translateY(-2px);
+}
+
+/* LIST */
+ul{
+  list-style:none;
+  margin-top:15px;
+}
+
+ul li{
+  background:#f3f4f6;
+  padding:10px 15px;
+  border-radius:8px;
+  margin-bottom:8px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  transition:0.3s;
+}
+
+ul li:hover{
+  background:#e5e7eb;
+}
+
+ul li button{
+  background:#ef4444;
+  border:none;
+  padding:5px 10px;
+  color:white;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(10px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+
+
+
+
+
+/* ===== PROFESSIONAL NAVBAR ===== */
+.navbar{
+  height:70px;
+  background:#ffffff;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 35px;
+  box-shadow:0 3px 15px rgba(0,0,0,0.06);
+  position:fixed;
+  width:100%;
+  top:0;
+  z-index:1000;
+}
+
+/* LEFT SIDE */
+.nav-left{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.logo{
+  width:42px;
+  height:42px;
+  background:linear-gradient(135deg,#4f46e5,#6366f1);
+  color:white;
+  font-weight:600;
+  font-size:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:10px;
+}
+
+.title h2{
+  font-size:16px;
+  font-weight:600;
+  color:#111827;
+}
+
+.title span{
+  font-size:12px;
+  color:#6b7280;
+}
+
+/* RIGHT SIDE */
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.admin-info{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:14px;
+  color:#374151;
+}
+
+.admin-avatar{
+  width:35px;
+  height:35px;
+  background:#e5e7eb;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:600;
+  color:#4f46e5;
+}
+
+/* LOGOUT BUTTON */
+.logout-btn{
+  background:#ef4444;
+  border:none;
+  padding:8px 16px;
+  border-radius:6px;
+  color:white;
+  font-size:13px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.logout-btn:hover{
+  background:#dc2626;
+  transform:translateY(-2px);
 }
 </style>
 </head>
@@ -87,10 +291,25 @@ button.action{
 
 <!-- NAVBAR -->
 <div class="navbar">
-  <h2>AP_Code Admin Panel</h2>
-  <button onclick="logout()">Logout</button>
-</div>
 
+  <div class="nav-left">
+    <div class="logo">AP</div>
+    <div class="title">
+      <h2>AP_Code</h2>
+      <span>Admin Dashboard</span>
+    </div>
+  </div>
+
+  <div class="nav-right">
+    <div class="admin-info">
+      <div class="admin-avatar">A</div>
+      <span>Admin</span>
+    </div>
+
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+</div>
 <!-- SIDEBAR -->
 <div class="sidebar">
   <button onclick="showSection('analysis')">📊 User Analysis</button>
@@ -102,21 +321,44 @@ button.action{
 <!-- MAIN CONTENT -->
 <div class="content">
 
-  <!-- USER ANALYSIS -->
-  <div id="analysis" class="card">
-    <h3>User Analysis</h3>
-    <p>Total Users: <span id="totalUsers">0</span></p>
-    <p>Total Videos Uploaded: <span id="totalVideos">0</span></p>
+<div id="analysis" class="card">
+  <h3>Dashboard Overview</h3>
+  <div class="stat-box">
+    <h4>Total Users</h4>
+    <h2 id="totalUsers">0</h2>
   </div>
+  <div class="stat-box">
+    <h4>Total Videos</h4>
+    <h2 id="totalVideos">0</h2>
+  </div>
+</div>
 
   <!-- UPLOAD VIDEO -->
-  <div id="upload" class="card" style="display:none;">
-    <h3>Upload Video</h3>
-    <input type="text" id="videoTitle" placeholder="Video Title"><br>
-    <input type="text" id="videoURL" placeholder="Video URL"><br>
-    <button class="action" onclick="uploadVideo()">Upload</button>
-    <ul id="videoList"></ul>
-  </div>
+ <div id="upload" class="card" style="display:none;">
+<h3>Upload Video</h3>
+
+<input type="text" id="videoTitle" placeholder="Video Title"><br>
+
+<select id="videoBatch">
+<option value="gallery">Video Gallery</option>
+<option value="java">Java Course</option>
+<option value="dsa">DSA Course</option>
+<option value="web">Web Development</option>
+<option value="interview">Interview Prep</option>
+</select>
+
+<br><br>
+
+<label>YouTube Link</label><br>
+<input type="text" id="youtubeURL" placeholder="Paste YouTube URL"><br>
+
+<label>OR Upload From Device</label><br>
+<input type="file" id="videoFile" accept="video/*"><br><br>
+
+<button class="action" onclick="uploadVideo()">Upload Video</button>
+
+<ul id="videoList"></ul>
+</div>
 
   <!-- USER CONTROL -->
   <div id="control" class="card" style="display:none;">
@@ -220,28 +462,92 @@ function deleteUser(index){
 
 /* UPLOAD VIDEO */
 function uploadVideo(){
-  let title = document.getElementById("videoTitle").value.trim();
-  let url = document.getElementById("videoURL").value.trim();
 
-  if(title && url){
-    let videos = getVideos();
-    videos.push({title,url});
-    saveVideos(videos);
-    displayVideos();
-    updateAnalysis();
-    document.getElementById("videoTitle").value="";
-    document.getElementById("videoURL").value="";
-  }
+let title = document.getElementById("videoTitle").value.trim();
+let youtube = document.getElementById("youtubeURL").value.trim();
+let file = document.getElementById("videoFile").files[0];
+let batch = document.getElementById("videoBatch").value;
+
+if(!title){
+alert("Enter video title");
+return;
+}
+
+let videos = getVideos();
+
+if(youtube){
+
+let id = extractYouTubeID(youtube);
+
+videos.push({
+title:title,
+type:"youtube",
+id:id,
+batch:batch
+});
+
+saveVideos(videos);
+displayVideos();
+updateAnalysis();
+clearFields();
+return;
+}
+
+if(file){
+
+let reader = new FileReader();
+
+reader.onload = function(e){
+
+videos.push({
+title:title,
+type:"local",
+url:e.target.result,
+batch:batch
+});
+
+saveVideos(videos);
+displayVideos();
+updateAnalysis();
+};
+
+reader.readAsDataURL(file);
+
+clearFields();
+return;
+}
+
+alert("Upload video or add YouTube link");
 }
 
 /* DISPLAY VIDEOS */
 function displayVideos(){
-  let videos = getVideos();
-  let list = document.getElementById("videoList");
-  list.innerHTML="";
-  videos.forEach((v)=>{
-    list.innerHTML += `<li>${v.title}</li>`;
-  });
+
+let videos = getVideos();
+let list = document.getElementById("videoList");
+
+list.innerHTML="";
+
+videos.forEach((v,index)=>{
+
+list.innerHTML += `
+<li>
+${v.title} (${v.batch})
+<button onclick="deleteVideo(${index})">Delete</button>
+</li>
+`;
+
+});
+}
+function deleteVideo(index){
+
+let videos = getVideos();
+videos.splice(index,1);
+
+saveVideos(videos);
+
+displayVideos();
+updateAnalysis();
 }
 
 /* INITIAL LOAD */
