@@ -1,824 +1,1334 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AP_Code</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AP_Code — Learn. Build. Succeed.</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET & TOKENS ─────────────────────────────────────── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
+:root {
+  --bg:        #080c10;
+  --surface:   #0d1117;
+  --card:      #111822;
+  --border:    rgba(255,255,255,0.07);
+  --accent:    #00e5ff;
+  --accent2:   #ff6b35;
+  --text:      #e8edf3;
+  --muted:     #6b7a8d;
+  --font-head: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─── NOISE OVERLAY ──────────────────────────────────────── */
+body::before {
+  content:'';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  background-size: 128px;
+  opacity: 0.4;
+}
+
+/* ─── NAVBAR ─────────────────────────────────────────────── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5vw;
+  height: 68px;
+  background: rgba(8,12,16,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: background .3s;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.nav-logo img {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  object-fit: cover;
+}
+
+.nav-logo span {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--text);
+  letter-spacing: .02em;
+}
+
+.nav-logo span b { color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: .88rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  transition: color .2s;
+}
+
+.nav-links a:hover { color: var(--accent); }
+
+.nav-cta {
+  background: transparent;
+  border: 1.5px solid var(--accent);
+  color: var(--accent);
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-family: var(--font-head);
+  font-size: .85rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .2s, color .2s, transform .15s;
+}
+
+.nav-cta:hover {
+  background: var(--accent);
+  color: var(--bg);
+  transform: translateY(-1px);
+}
+
+/* hamburger */
+.ham { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; }
+.ham span { display:block; width:22px; height:2px; background:var(--text); border-radius:2px; transition:.3s; }
+
+/* ─── HERO ───────────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 5vw 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* mesh gradient orbs */
+.hero::before {
+  content:'';
+  position: absolute;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(0,229,255,.12) 0%, transparent 65%);
+  top: -150px; right: -200px;
+  pointer-events: none;
+}
+
+.hero::after {
+  content:'';
+  position: absolute;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(255,107,53,.1) 0%, transparent 65%);
+  bottom: -100px; left: 5vw;
+  pointer-events: none;
+}
+
+/* horizontal scan line */
+.scan-line {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  animation: scan 4s linear infinite;
+}
+
+@keyframes scan { 0%{top:0} 100%{top:100%} }
+
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,229,255,.08);
+  border: 1px solid rgba(0,229,255,.25);
+  color: var(--accent);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  animation: fadeUp .7s ease both;
+}
+
+.hero-badge::before {
+  content:'';
+  width: 6px; height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%,100%{box-shadow:0 0 0 0 rgba(0,229,255,.5)}
+  50%{box-shadow:0 0 0 6px transparent}
+}
+
+.hero h1 {
+  font-family: var(--font-head);
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -.02em;
+  margin-bottom: 1.4rem;
+  animation: fadeUp .7s .1s ease both;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--accent);
+  position: relative;
+}
+
+.hero p {
+  color: var(--muted);
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.75;
+  max-width: 480px;
+  margin-bottom: 2rem;
+  animation: fadeUp .7s .2s ease both;
+}
+
+.hero-points {
+  list-style: none;
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  animation: fadeUp .7s .3s ease both;
+}
+
+.hero-points li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: .9rem;
+  color: #9aaab8;
+}
+
+.hero-points li::before {
+  content:'';
+  width: 16px; height: 16px; flex-shrink:0;
+  background: rgba(0,229,255,.1);
+  border: 1px solid rgba(0,229,255,.4);
+  border-radius: 4px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpolyline points='2,6 5,9 10,3' stroke='%2300e5ff' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: 10px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  animation: fadeUp .7s .4s ease both;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+  padding: 13px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: .9rem;
+  letter-spacing: .04em;
+  transition: transform .15s, box-shadow .2s;
+  box-shadow: 0 0 24px rgba(0,229,255,.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 40px rgba(0,229,255,.5);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  padding: 13px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: .9rem;
+  border: 1.5px solid var(--border);
+  transition: border-color .2s, color .2s;
+}
+
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+/* right visual – code card */
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  animation: fadeUp .7s .3s ease both;
+}
+
+.code-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 30px 80px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+.code-card-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 16px;
+  background: rgba(255,255,255,.03);
+  border-bottom: 1px solid var(--border);
+}
+
+.dot { width:10px;height:10px;border-radius:50%; }
+.dot.r{background:#ff5f56} .dot.y{background:#ffbd2e} .dot.g{background:#27c93f}
+
+.code-card-title {
+  margin-left: auto;
+  font-size: .75rem;
+  color: var(--muted);
+  font-family: monospace;
+}
+
+.code-body {
+  padding: 20px;
+  font-family: 'Courier New', monospace;
+  font-size: .8rem;
+  line-height: 2;
+  color: #8899aa;
+}
+
+.code-body .kw  { color: #c792ea; }
+.code-body .fn  { color: var(--accent); }
+.code-body .str { color: #c3e88d; }
+.code-body .num { color: var(--accent2); }
+.code-body .cm  { color: #546e7a; font-style:italic; }
+
+.code-stats {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  border-top: 1px solid var(--border);
+}
+
+.stat-item {
+  padding: 16px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+}
+
+.stat-item:last-child { border-right: none; }
+
+.stat-num {
+  font-family: var(--font-head);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: .7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+/* ─── SECTIONS SHARED ────────────────────────────────────── */
+section {
+  padding: 100px 5vw;
+  position: relative;
+  z-index: 1;
+}
+
+.section-tag {
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .75rem;
+}
+
+.section-title {
+  font-family: var(--font-head);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -.02em;
+  margin-bottom: .75rem;
+}
+
+.section-sub {
+  color: var(--muted);
+  font-size: .95rem;
+  font-weight: 300;
+  max-width: 520px;
+  margin-bottom: 3rem;
+}
+
+/* ─── GALLERY ────────────────────────────────────────────── */
+#video-gallery { background: var(--surface); }
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.vid-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+
+.vid-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0,229,255,.3);
+  box-shadow: 0 16px 40px rgba(0,0,0,.4);
+}
+
+.vid-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: #0a0f15;
+}
+
+.vid-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .3s;
+}
+
+.vid-card:hover .vid-thumb img { transform: scale(1.04); }
+
+.play-btn {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.45);
+  opacity: 0;
+  transition: opacity .2s;
+}
+
+.vid-card:hover .play-btn { opacity: 1; }
+
+.play-btn svg { width:48px; height:48px; filter: drop-shadow(0 0 12px rgba(0,229,255,.6)); }
+
+.vid-info { padding: 14px 16px; }
+
+.vid-info h3 {
+  font-family: var(--font-head);
+  font-size: .95rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vid-info p { font-size: .78rem; color: var(--muted); }
+
+/* embed */
+.vid-embed {
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.page-btn {
+  background: transparent;
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  padding: 8px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: var(--font-head);
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  transition: border-color .2s, color .2s;
+}
+
+.page-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.page-btn:disabled { opacity: .3; cursor: not-allowed; }
+
+.page-info { font-size: .82rem; color: var(--muted); }
+
+/* ─── COURSES ────────────────────────────────────────────── */
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1.5rem;
+}
+
+.course-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.course-card::before {
+  content:'';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s;
+}
+
+.course-card:hover { transform: translateY(-4px); border-color: rgba(0,229,255,.2); box-shadow: 0 20px 50px rgba(0,0,0,.4); }
+.course-card:hover::before { transform: scaleX(1); }
+
+.course-icon {
+  width: 44px; height: 44px;
+  background: rgba(0,229,255,.08);
+  border: 1px solid rgba(0,229,255,.2);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.course-card h3 {
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.course-card p {
+  font-size: .84rem;
+  color: var(--muted);
+  line-height: 1.65;
+  flex-grow: 1;
+}
+
+.course-meta {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+
+.course-meta span {
+  font-size: .78rem;
+  color: #6b7a8d;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.course-actions {
+  display: flex;
+  gap: .75rem;
+  margin-top: .5rem;
+}
+
+.btn-sm {
+  padding: 9px 18px;
+  border-radius: 7px;
+  font-family: var(--font-head);
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.btn-sm.primary {
+  background: var(--accent);
+  color: var(--bg);
+  box-shadow: 0 0 16px rgba(0,229,255,.2);
+}
+
+.btn-sm.primary:hover { box-shadow: 0 0 30px rgba(0,229,255,.4); transform: translateY(-1px); }
+
+.btn-sm.ghost {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+.btn-sm.ghost:hover { color: var(--text); border-color: rgba(255,255,255,.2); }
+
+/* ─── TESTIMONIALS ───────────────────────────────────────── */
+#ratings { background: var(--surface); }
+
+.ratings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.rating-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  transition: border-color .2s, transform .2s;
+}
+
+.rating-card:hover { border-color: rgba(0,229,255,.2); transform: translateY(-3px); }
+
+.stars { color: #f9b112; font-size: 1rem; letter-spacing: 2px; }
+
+.rating-card blockquote {
+  font-size: .85rem;
+  color: #8899aa;
+  line-height: 1.7;
+  font-style: italic;
+  quotes: "\201C" "\201D";
+}
+
+.rating-card blockquote::before { content: open-quote; color: var(--accent); font-size: 1.3rem; }
+
+.rating-card cite {
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--text);
+  font-style: normal;
+  margin-top: auto;
+}
+
+/* ─── AUTH MODAL ─────────────────────────────────────────── */
+.auth-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.8);
+  backdrop-filter: blur(12px);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.auth-overlay.open { display: flex; }
+
+.auth-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  width: 100%;
+  max-width: 400px;
+  padding: 36px;
+  position: relative;
+  box-shadow: 0 40px 100px rgba(0,0,0,.7);
+  animation: modalIn .25s ease;
+}
+
+@keyframes modalIn {
+  from { opacity:0; transform:scale(.95) translateY(10px); }
+  to   { opacity:1; transform:scale(1) translateY(0); }
+}
+
+.auth-close {
+  position: absolute;
+  top: 16px; right: 18px;
+  background: none; border: none;
+  color: var(--muted); font-size: 1.4rem;
+  cursor: pointer; line-height: 1;
+  transition: color .2s;
+}
+
+.auth-close:hover { color: var(--text); }
+
+.auth-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.auth-logo img { width:32px; height:32px; border-radius:50%; border:2px solid var(--accent); }
+.auth-logo span { font-family:var(--font-head); font-weight:800; font-size:1rem; }
+
+.auth-tabs {
+  display: flex;
+  gap: .5rem;
+  background: rgba(255,255,255,.03);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 4px;
+  margin-bottom: 24px;
+}
+
+.auth-tab {
+  flex: 1;
+  padding: 9px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  color: var(--muted);
+  font-family: var(--font-head);
+  font-size: .85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.auth-tab.active {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.auth-form { display: flex; flex-direction: column; gap: 12px; }
+
+.auth-form.hidden { display: none; }
+
+.auth-form input {
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 13px 16px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: .9rem;
+  outline: none;
+  transition: border-color .2s;
+}
+
+.auth-form input:focus { border-color: var(--accent); }
+.auth-form input::placeholder { color: var(--muted); }
+
+.auth-form button[type="submit"] {
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 9px;
+  padding: 13px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: .9rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: box-shadow .2s, transform .15s;
+}
+
+.auth-form button[type="submit"]:hover {
+  box-shadow: 0 0 30px rgba(0,229,255,.4);
+  transform: translateY(-1px);
+}
+
+.auth-switch {
+  text-align: center;
+  font-size: .8rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.auth-switch span { color: var(--accent); cursor: pointer; }
+
+/* ─── FOOTER ─────────────────────────────────────────────── */
+footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 48px 5vw 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.footer-brand span {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1.2rem;
+  display: block;
+  margin-bottom: .5rem;
+}
+
+.footer-brand span b { color: var(--accent); }
+.footer-brand p { font-size: .82rem; color: var(--muted); max-width: 260px; }
+
+.footer-links-group {
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.footer-col h4 {
+  font-family: var(--font-head);
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: .75rem;
+}
+
+.footer-col a {
+  display: block;
+  color: #6b7a8d;
+  text-decoration: none;
+  font-size: .85rem;
+  margin-bottom: .4rem;
+  transition: color .2s;
+}
+
+.footer-col a:hover { color: var(--accent); }
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-size: .78rem;
+  color: var(--muted);
+}
+
+.insta-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: .82rem;
+  transition: color .2s;
+}
+
+.insta-link:hover { color: var(--accent); }
+.insta-link img { width:18px; height:18px; border-radius:4px; filter:grayscale(1); transition:.2s; }
+.insta-link:hover img { filter:none; }
+
+/* ─── ANIMATIONS ─────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(24px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+
+.reveal.visible { opacity:1; transform:none; }
+
+/* ─── RESPONSIVE ─────────────────────────────────────────── */
+@media(max-width:900px) {
+  .hero-inner { grid-template-columns:1fr; }
+  .hero-visual { display:none; }
+  .nav-links { display:none; }
+  .ham { display:flex; }
+}
+
+@media(max-width:600px) {
+  section { padding:70px 5vw; }
+  .courses-grid, .ratings-grid { grid-template-columns:1fr; }
+  .footer-top { flex-direction:column; }
+  .footer-links-group { gap:1.5rem; }
+}
+</style>
 </head>
 <body>
-  
-  <header class="site-header">
-    <div class="logo-area">
-      <img src="https://yt3.googleusercontent.com/yWaXXHwO3P82WAwIjPIi8chvUdxW_bRWCDpzb_uSJpGJp5yCEb2S7R4POS-TkTvm2Bs2GCyoLA=s160-c-k-c0x00ffffff-no-rj"
-           alt="Channel Logo">
-      <span>AP_Code</span>
-    </div>
-  
- <nav class="navbar-pro">
-  <div class="nav-brand">AP</div>
 
-  <input type="checkbox" id="menu-toggle">
+<!-- NAVBAR -->
+<nav class="nav" id="navbar">
+  <a href="#home" class="nav-logo">
+    <img src="https://yt3.googleusercontent.com/yWaXXHwO3P82WAwIjPIi8chvUdxW_bRWCDpzb_uSJpGJp5yCEb2S7R4POS-TkTvm2Bs2GCyoLA=s160-c-k-c0x00ffffff-no-rj" alt="AP_Code">
+    <span>AP<b>_Code</b></span>
+  </a>
 
-  <label for="menu-toggle" class="hamburger-pro">
-    <span></span>
-    <span></span>
-    <span></span>
-  </label>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#video-gallery">Gallery</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#ratings">Reviews</a></li>
+  </ul>
 
-  <div class="nav-links-pro">
-    <a href="#home">Home</a>
-    <a href="#video-gallery">Gallery</a>
-    <a href="#courses">Courses</a>
-    <a href="#blog">Blog</a>
-    <a href="#contact">Contact</a>
+  <button class="nav-cta" onclick="openAuth()">Login</button>
+  <div class="ham" onclick="toggleMobile()">
+    <span></span><span></span><span></span>
   </div>
-
-  <button class="login-btn-pro" onclick="openAuth()">Login</button>
 </nav>
 
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="scan-line"></div>
 
-  </header>
-  
-    
-  
-  
-
-  <main>
-   <section id="home" class="hero-pro">
-  <div class="hero-grid">
-
-    <!-- LEFT CONTENT -->
+  <div class="hero-inner">
     <div class="hero-text">
-
-      <div class="hero-badge">
-        Trusted Learning Platform
-      </div>
+      <div class="hero-badge">Trusted Learning Platform</div>
 
       <h1>
-        Building Strong Foundations in<br>
-        <span>Programming, DSA & Web Development</span>
+        Build Careers with<br>
+        <em>DSA, Java &</em><br>
+        Web Development
       </h1>
 
-      <p class="hero-subtext">
-        Abhishek Pandey is an educational platform dedicated to helping students
-        and early-career developers master computer science fundamentals,
-        problem-solving techniques, and industry-ready skills through
-        structured learning and practical implementation.
+      <p>
+        Abhishek Pandey's platform helps students and early-career developers master
+        computer science fundamentals with clear explanations, structured courses,
+        and interview-ready content.
       </p>
 
       <ul class="hero-points">
-        <li>✔ Structured DSA & Algorithm training</li>
-        <li>✔ Real-world web development projects</li>
-        <li>✔ Interview & placement-oriented preparation</li>
-        <li>✔ Clear explanations with practical examples</li>
+        <li>Structured DSA & Algorithm training</li>
+        <li>Real-world web development projects</li>
+        <li>Interview & placement preparation</li>
+        <li>Clear explanations, practical examples</li>
       </ul>
 
       <div class="hero-actions">
-        <a href="	https://www.youtube.com/@LogicForge8"
-           target="_blank"
-           class="btn-primary">
-          View Learning Content
+        <a href="https://www.youtube.com/@LogicForge8" target="_blank" class="btn-primary">
+          View Content →
         </a>
-
-        <a href="#about" class="btn-secondary">
-          About the Instructor
-        </a>
+        <a href="#courses" class="btn-ghost">Explore Courses</a>
       </div>
-
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-    <!-- RIGHT VISUAL -->
+    <!-- Code Visual -->
     <div class="hero-visual">
-      <img
-        src="https://yt3.googleusercontent.com/yWaXXHwO3P82WAwIjPIi8chvUdxW_bRWCDpzb_uSJpGJp5yCEb2S7R4POS-TkTvm2Bs2GCyoLA=s160-c-k-c0x00ffffff-no-rj"
-        alt="Abhishek Pandey"
-      >
-      <div class="visual-glow"></div>
+      <div class="code-card">
+        <div class="code-card-bar">
+          <div class="dot r"></div>
+          <div class="dot y"></div>
+          <div class="dot g"></div>
+          <span class="code-card-title">BinarySearch.java</span>
+        </div>
+        <div class="code-body">
+<span class="cm">// Binary Search — AP_Code DSA</span><br>
+<span class="kw">public static int</span> <span class="fn">binarySearch</span>(<br>
+&nbsp;&nbsp;<span class="kw">int</span>[] arr, <span class="kw">int</span> target) {<br>
+&nbsp;&nbsp;<span class="kw">int</span> lo = <span class="num">0</span>, hi = arr.length - <span class="num">1</span>;<br>
+&nbsp;&nbsp;<span class="kw">while</span> (lo &lt;= hi) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">int</span> mid = lo + (hi-lo)/<span class="num">2</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">if</span> (arr[mid] == target)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> mid;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">if</span> (arr[mid] &lt; target) lo = mid+<span class="num">1</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">else</span> hi = mid-<span class="num">1</span>;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="kw">return</span> -<span class="num">1</span>;<br>
+}
+        </div>
+        <div class="code-stats">
+          <div class="stat-item">
+            <div class="stat-num">100+</div>
+            <div class="stat-label">Lectures</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">4</div>
+            <div class="stat-label">Courses</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">★ 4.9</div>
+            <div class="stat-label">Rating</div>
+          </div>
+        </div>
+      </div>
     </div>
-
   </div>
 </section>
 
+<!-- GALLERY -->
+<section id="video-gallery">
+  <div class="section-tag">Demo Lectures</div>
+  <h2 class="section-title reveal">Watch Before You Enroll</h2>
+  <p class="section-sub reveal">Free sample videos to help you understand the teaching style and content quality.</p>
 
+  <div class="gallery-grid" id="gallery"></div>
 
+  <div class="pagination">
+    <button class="page-btn" id="prevPage">← Prev</button>
+    <span class="page-info" id="pageInfo"></span>
+    <button class="page-btn" id="nextPage">Next →</button>
+  </div>
+</section>
 
-
-
-
-    
-
-    <!-- Modern paginated, lazy-load video gallery -->
-    <section id="video-gallery">
-      <h2>Demo Lectures</h2>
-      <div class="gallery-container" id="gallery"></div>
-      <div class="pagination">
-        <button id="prevPage">Prev</button>
-        <span id="pageInfo"></span>
-        <button id="nextPage">Next</button>
-      </div>
-    </section>
-
-
-
-
-
-
-
-
-
-
-
-<!-- COURSES SECTION -->
-<section id="courses" class="courses-section">
-  <h2>Courses & Learning Paths</h2>
-  <p class="courses-subtitle">
-    Structured courses with video lectures, notes, and practice material.
-  </p>
+<!-- COURSES -->
+<section id="courses">
+  <div class="section-tag">Learning Paths</div>
+  <h2 class="section-title reveal">Courses & Structured Tracks</h2>
+  <p class="section-sub reveal">Structured courses with video lectures, downloadable notes, and practice problems.</p>
 
   <div class="courses-grid">
 
-    <!-- COURSE CARD -->
-    <div class="course-card">
-      <h3>Java Programming (Beginner to Advanced)</h3>
-      <p class="course-desc">
-        Learn Java from scratch with clear explanations, real examples, and interview-focused concepts.
-      </p>
-
-      <ul class="course-features">
-        <li>📺 25+ Video Lectures</li>
-        <li>📄 Downloadable Notes (PDF)</li>
-        <li>🧠 Practice Questions</li>
-      </ul>
-
+    <div class="course-card reveal">
+      <div class="course-icon">☕</div>
+      <h3>Java Programming (Beginner → Advanced)</h3>
+      <p>Learn Java from scratch with clear explanations, real examples, and interview-focused concepts.</p>
+      <div class="course-meta">
+        <span>📺 25+ Video Lectures</span>
+        <span>📄 Downloadable Notes (PDF)</span>
+        <span>🧠 Practice Questions</span>
+      </div>
       <div class="course-actions">
-   <a href="auth.html?course=java" class="btn-primary">View Lectures</a>
-
-
-  
-
-
-        <a href="#" class="btn-secondary">Download Notes</a>
+        <a href="auth.html?course=java" class="btn-sm primary">View Lectures</a>
+        <a href="#" class="btn-sm ghost">Notes</a>
       </div>
     </div>
 
-    <!-- COURSE CARD -->
-    <div class="course-card">
-      <h3>Data Structures & Algorithms (DSA)</h3>
-      <p class="course-desc">
-        Master arrays, linked lists, stacks, queues, trees, and graphs with interview problems.
-      </p>
-
-      <ul class="course-features">
-        <li>📺 40+ Video Lectures</li>
-        <li>📄 Topic-wise Notes</li>
-        <li>💡 LeetCode + GFG Problems</li>
-      </ul>
-
+    <div class="course-card reveal">
+      <div class="course-icon">🌳</div>
+      <h3>Data Structures & Algorithms</h3>
+      <p>Master arrays, linked lists, stacks, queues, trees, and graphs with real interview problems.</p>
+      <div class="course-meta">
+        <span>📺 40+ Video Lectures</span>
+        <span>📄 Topic-wise Notes</span>
+        <span>💡 LeetCode + GFG Problems</span>
+      </div>
       <div class="course-actions">
-<a href="auth.html?course=dsa" class="btn-primary">View Lectures</a>
-
-        <a href="#" class="btn-secondary">Download Notes</a>
+        <a href="auth.html?course=dsa" class="btn-sm primary">View Lectures</a>
+        <a href="#" class="btn-sm ghost">Notes</a>
       </div>
     </div>
 
-    <!-- COURSE CARD -->
-    <div class="course-card">
+    <div class="course-card reveal">
+      <div class="course-icon">🌐</div>
       <h3>Web Development (HTML, CSS, JS)</h3>
-      <p class="course-desc">
-        Build responsive websites and real-world projects using modern web technologies.
-      </p>
-
-      <ul class="course-features">
-        <li>📺 30+ Video Lectures</li>
-        <li>📄 Project-based Notes</li>
-        <li>🚀 Mini & Major Projects</li>
-      </ul>
-
+      <p>Build responsive websites and real-world projects using modern web technologies.</p>
+      <div class="course-meta">
+        <span>📺 30+ Video Lectures</span>
+        <span>📄 Project-based Notes</span>
+        <span>🚀 Mini & Major Projects</span>
+      </div>
       <div class="course-actions">
-        <a href="auth.html?course=web" class="btn-primary">View Lectures</a>
-
-        <a href="#" class="btn-secondary">Download Notes</a>
+        <a href="auth.html?course=web" class="btn-sm primary">View Lectures</a>
+        <a href="#" class="btn-sm ghost">Notes</a>
       </div>
     </div>
 
-    <!-- COURSE CARD -->
-    <div class="course-card">
-      <h3>Interview Preparation & Placement</h3>
-      <p class="course-desc">
-        Prepare for technical interviews with problem-solving strategies and mock questions.
-      </p>
-
-      <ul class="course-features">
-        <li>📺 Interview Sessions</li>
-        <li>📄 Resume & Interview Notes</li>
-        <li>🎯 Company-wise Questions</li>
-      </ul>
-
+    <div class="course-card reveal">
+      <div class="course-icon">🎯</div>
+      <h3>Interview Prep & Placement</h3>
+      <p>Prepare for technical interviews with problem-solving strategies and company-wise questions.</p>
+      <div class="course-meta">
+        <span>📺 Interview Sessions</span>
+        <span>📄 Resume & Interview Notes</span>
+        <span>🎯 Company-wise Questions</span>
+      </div>
       <div class="course-actions">
-     <a href="auth.html?course=interview" class="btn-primary">View Lectures</a>
-
-        <a href="#" class="btn-secondary">Download Notes</a>
+        <a href="auth.html?course=interview" class="btn-sm primary">View Lectures</a>
+        <a href="#" class="btn-sm ghost">Notes</a>
       </div>
     </div>
 
   </div>
 </section>
 
-
-
-
-
-
-<!-- RATINGS / TESTIMONIALS SECTION -->
-<section id="ratings" class="ratings-section">
-  <h2>What Students Say</h2>
-  <p class="ratings-subtitle">
-    Trusted by learners across India for clear explanations and practical learning.
-  </p>
+<!-- TESTIMONIALS -->
+<section id="ratings">
+  <div class="section-tag">Student Reviews</div>
+  <h2 class="section-title reveal">What Learners Say</h2>
+  <p class="section-sub reveal">Trusted by students across India for clear explanations and practical learning.</p>
 
   <div class="ratings-grid">
 
-    <div class="rating-card">
+    <div class="rating-card reveal">
       <div class="stars">★★★★★</div>
-      <p>
-        “The Java course explained concepts in a very simple way. 
-        It helped me crack my college practicals and interviews.”
-      </p>
-      <h4>— Rahul Sharma</h4>
+      <blockquote>The Java course explained concepts in a very simple way. It helped me crack my college practicals and interviews.</blockquote>
+      <cite>Rahul Sharma</cite>
     </div>
 
-    <div class="rating-card">
+    <div class="rating-card reveal">
       <div class="stars">★★★★★</div>
-      <p>
-        “DSA lectures are gold. I finally understood recursion and trees clearly.
-        Highly recommended for beginners.”
-      </p>
-      <h4>— Neha Verma</h4>
+      <blockquote>DSA lectures are gold. I finally understood recursion and trees clearly. Highly recommended for beginners.</blockquote>
+      <cite>Neha Verma</cite>
     </div>
 
-    <div class="rating-card">
+    <div class="rating-card reveal">
       <div class="stars">★★★★☆</div>
-      <p>
-        “Web development course is very practical. The projects boosted my confidence
-        in HTML, CSS, and JavaScript.”
-      </p>
-      <h4>— Aman Gupta</h4>
+      <blockquote>Web development course is very practical. The projects boosted my confidence in HTML, CSS, and JavaScript.</blockquote>
+      <cite>Aman Gupta</cite>
     </div>
 
-    <div class="rating-card">
+    <div class="rating-card reveal">
       <div class="stars">★★★★★</div>
-      <p>
-        “Interview preparation sessions helped me understand how to approach
-        coding questions in real interviews.”
-      </p>
-      <h4>— Priya Singh</h4>
+      <blockquote>Interview preparation sessions helped me understand how to approach coding questions in real interviews.</blockquote>
+      <cite>Priya Singh</cite>
     </div>
 
-    <div class="rating-card">
+    <div class="rating-card reveal">
       <div class="stars">★★★★☆</div>
-      <p>
-        “Best platform for structured learning. The explanations are concise,
-        focused, and beginner-friendly.”
-      </p>
-      <h4>— Saurabh Kumar</h4>
+      <blockquote>Best platform for structured learning. The explanations are concise, focused, and beginner-friendly.</blockquote>
+      <cite>Saurabh Kumar</cite>
     </div>
 
   </div>
 </section>
 
-
-
-
-
-
-
-
-
-
-
-   
-
-
-
-   
-
-
-
 <!-- AUTH MODAL -->
-<div id="authModal" class="auth-modal">
-  <div class="auth-card">
-    <span class="close-btn" onclick="closeAuth()">×</span>
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-box">
+    <button class="auth-close" onclick="closeAuth()">×</button>
 
-    <div class="auth-tabs">
-      <button id="loginTab" class="active" onclick="showLogin()">Login</button>
-      <button id="signupTab" onclick="showSignup()">Sign Up</button>
+    <div class="auth-logo">
+      <img src="https://yt3.googleusercontent.com/yWaXXHwO3P82WAwIjPIi8chvUdxW_bRWCDpzb_uSJpGJp5yCEb2S7R4POS-TkTvm2Bs2GCyoLA=s160-c-k-c0x00ffffff-no-rj" alt="AP_Code">
+      <span>AP_Code</span>
     </div>
 
-    <!-- LOGIN FORM -->
-    <form id="loginForm" class="auth-form">
-      <input type="email" placeholder="Email" required>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="loginTab" onclick="showLogin()">Login</button>
+      <button class="auth-tab" id="signupTab" onclick="showSignup()">Sign Up</button>
+    </div>
+
+    <form id="loginForm" class="auth-form" onsubmit="handleLogin(event)">
+      <input type="email" placeholder="Email address" required>
       <input type="password" placeholder="Password" required>
-      <button type="submit">Login</button>
-      <p class="switch-text">
-        New here? <span onclick="showSignup()">Create account</span>
-      </p>
+      <button type="submit">Login →</button>
+      <p class="auth-switch">New here? <span onclick="showSignup()">Create account</span></p>
     </form>
 
-    <!-- SIGNUP FORM -->
-    <form id="signupForm" class="auth-form hidden">
-      <input type="text" placeholder="Full Name" required>
-      <input type="email" placeholder="Email" required>
-      <input type="password" placeholder="Password" required>
-      <button type="submit">Sign Up</button>
-      <p class="switch-text">
-        Already have an account? <span onclick="showLogin()">Login</span>
-      </p>
+    <form id="signupForm" class="auth-form hidden" onsubmit="handleSignup(event)">
+      <input type="text" placeholder="Full name" required>
+      <input type="email" placeholder="Email address" required>
+      <input type="password" placeholder="Create password" required>
+      <button type="submit">Create Account →</button>
+      <p class="auth-switch">Already registered? <span onclick="showLogin()">Login</span></p>
     </form>
   </div>
 </div>
 
-<!--Ai Assistant-->
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span>AP<b>_Code</b></span>
+        <p>Building strong foundations in programming, DSA & web development — one clear explanation at a time.</p>
+      </div>
+      <div class="footer-links-group">
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <a href="#home">Home</a>
+          <a href="#video-gallery">Gallery</a>
+          <a href="#courses">Courses</a>
+          <a href="#ratings">Reviews</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms & Conditions</a>
+          <a href="about.html">About Us</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
 
-
-
-
-
-
-
-
-
-
-
-<!-- VIDEO GALLERY SECTION (Place this AFTER About section and BEFORE Contact section) -->
-
-
-
-
-
-
-
-<footer class="site-footer">
-  <p>&copy; 2026 ABHISHEK PANDEY | All rights reserved.</p>
-
-  <div class="footer-links">
-    <a href="privacy.html">Privacy Policy</a>
-    <a href="about.html">About Us</a>
-    <a href="#courses">Courses</a>
-    <a href="terms.html">Terms & Conditions</a>
-    <a href="contact.html">Contact</a>
-  </div>
-
-  <!-- CHAT SECTION -->
-  <div class="footer-chat">
-    <a href="https://www.instagram.com/logicforge8/?hl=en"
-       target="_blank"
-       title="Chat with us on Instagram">
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
-        alt="Instagram Chat"
-      >
-      <span>Chat with us</span>
-    </a>
+    <div class="footer-bottom">
+      <span>© 2026 Abhishek Pandey — All rights reserved.</span>
+      <a href="https://www.instagram.com/logicforge8/?hl=en" target="_blank" class="insta-link">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+        Chat on Instagram
+      </a>
+    </div>
   </div>
 </footer>
 
-
-
-
-
-
-
-
-  <script>
-
-
-
-
-
-
-
-document.addEventListener("DOMContentLoaded", function(){
-
-  // =========================
-  // CONTACT FORM HANDLER
-  // =========================
-  const contactForm = document.getElementById("contactForm");
-
-  if(contactForm){
-    contactForm.addEventListener("submit", async function(e) {
-      e.preventDefault();
-
-      var form = e.target;
-      var formMsg = document.getElementById("formMsg");
-
-      if(formMsg){
-        formMsg.textContent = "Sending...";
-        formMsg.className = "";
-      }
-
-      var fd = new FormData(form);
-
-      try {
-        let resp = await fetch(form.action, {
-          method: 'POST',
-          body: fd,
-          headers: { 'Accept': 'application/json' }
-        });
-
-        if (resp.ok) {
-          form.reset();
-          if(formMsg){
-            formMsg.textContent = "Thank you! Your message is sent.";
-            formMsg.className = "successMsg";
-          }
-        } else {
-          if(formMsg){
-            formMsg.textContent = "Error: Could not send. Please try again.";
-            formMsg.className = "errorMsg";
-          }
-        }
-      } catch (err) {
-        if(formMsg){
-          formMsg.textContent = "Network Error!";
-          formMsg.className = "errorMsg";
-        }
-      }
-    });
-  }
-
-});
-</script>
 <script>
-  const videoData = [
-    { id: "9QJtEuaki1w", title: "Complete Java in One Shot", desc: "Start your coding journey!", thumbnail: "https://i.ytimg.com/an_webp/9QJtEuaki1w/mqdefault_6s.webp?du=3000&sqp=COyH-csG&rs=AOn4CLDY6Vxq6jp4uUGOdOmfFZLtWT8vqA" },
-    { id: "25JC2RIEFYY", title: "Complete array in one shot", desc: "Learn Array visually.", thumbnail: "https://i.ytimg.com/an_webp/25JC2RIEFYY/mqdefault_6s.webp?du=3000&sqp=CLbs-MsG&rs=AOn4CLBgxBWt0wadfmQiS_XzccF1SrsZNw" },
-    { id: "xTkgfhM7cDk", title: "Perfect Number", desc: "Leetcode Problem", thumbnail: "https://i.ytimg.com/an_webp/xTkgfhM7cDk/mqdefault_6s.webp?du=3000&sqp=CPTY-MsG&rs=AOn4CLDrWRsfVEwvI8v5eIho5olReboJxg" },
-    { id: "6FMTBYycXKA", title: "Count Operation to obtain zero", desc: "Leetcode Problem.", thumbnail: "https://i.ytimg.com/an_webp/6FMTBYycXKA/mqdefault_6s.webp?du=3000&sqp=CICW-csG&rs=AOn4CLDSBxYmFs7zYZgLgpPYxOmXeddaAA" },
-    { id: "OYY2qmPbLqw", title: "Move zeroes", desc: "Leetcode Problem", thumbnail: "https://i.ytimg.com/an_webp/OYY2qmPbLqw/mqdefault_6s.webp?du=3000&sqp=CMT3-MsG&rs=AOn4CLBbg0f0j_UbqEC2wxmjPQVLzEzNlg" }
-  ];
+/* ── VIDEO DATA ───────────────────────────────────────────── */
+const videoData = [
+  { id:"9QJtEuaki1w", title:"Complete Java in One Shot", desc:"Start your coding journey!", thumbnail:"https://i.ytimg.com/an_webp/9QJtEuaki1w/mqdefault_6s.webp?du=3000&sqp=COyH-csG&rs=AOn4CLDY6Vxq6jp4uUGOdOmfFZLtWT8vqA" },
+  { id:"25JC2RIEFYY", title:"Complete Array in One Shot", desc:"Learn arrays visually.", thumbnail:"https://i.ytimg.com/an_webp/25JC2RIEFYY/mqdefault_6s.webp?du=3000&sqp=CLbs-MsG&rs=AOn4CLBgxBWt0wadfmQiS_XzccF1SrsZNw" },
+  { id:"xTkgfhM7cDk", title:"Perfect Number — LeetCode", desc:"Problem solving walkthrough.", thumbnail:"https://i.ytimg.com/an_webp/xTkgfhM7cDk/mqdefault_6s.webp?du=3000&sqp=CPTY-MsG&rs=AOn4CLDrWRsfVEwvI8v5eIho5olReboJxg" },
+  { id:"6FMTBYycXKA", title:"Count Operations to Zero", desc:"LeetCode problem explained.", thumbnail:"https://i.ytimg.com/an_webp/6FMTBYycXKA/mqdefault_6s.webp?du=3000&sqp=CICW-csG&rs=AOn4CLDSBxYmFs7zYZgLgpPYxOmXeddaAA" },
+  { id:"OYY2qmPbLqw", title:"Move Zeroes — LeetCode", desc:"Two-pointer technique.", thumbnail:"https://i.ytimg.com/an_webp/OYY2qmPbLqw/mqdefault_6s.webp?du=3000&sqp=CMT3-MsG&rs=AOn4CLBbg0f0j_UbqEC2wxmjPQVLzEzNlg" }
+];
 
+const pageSize = 3;
+let currentPage = 1;
 
+function renderGallery(page) {
+  const gallery = document.getElementById("gallery");
+  gallery.innerHTML = "";
+  const start = (page - 1) * pageSize;
+  const end   = Math.min(start + pageSize, videoData.length);
 
-
-
-
-
-function openIntroVideo() {
-  const videoId = "dQw4w9WgXcQ";
-  window.open(`https://www.youtube.com/watch?v=${videoId}`, "_blank");
-}
-
-
-
-
-
-  const pageSize = 3;
-  let currentPage = 1;
-
-  function renderGallery(page) {
-    const gallery = document.getElementById("gallery");
-    gallery.innerHTML = "";
-
-    const start = (page - 1) * pageSize;
-    const end = Math.min(start + pageSize, videoData.length);
-
-    for (let i = start; i < end; i++) {
-      const v = videoData[i];
-      const card = document.createElement("div");
-      card.className = "lazy-video-card";
-      card.innerHTML = `
-        <img src="${v.thumbnail}" data-id="${v.id}" alt="${v.title}">
+  for (let i = start; i < end; i++) {
+    const v = videoData[i];
+    const card = document.createElement("div");
+    card.className = "vid-card";
+    card.innerHTML = `
+      <div class="vid-thumb">
+        <img src="${v.thumbnail}" alt="${v.title}" loading="lazy">
+        <div class="play-btn">
+          <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="30" r="29" stroke="#00e5ff" stroke-width="1.5"/>
+            <polygon points="24,18 46,30 24,42" fill="#00e5ff"/>
+          </svg>
+        </div>
+      </div>
+      <div class="vid-info">
         <h3>${v.title}</h3>
         <p>${v.desc}</p>
-      `;
-      card.querySelector("img").onclick = function () {
-        const iframe = document.createElement("iframe");
-        iframe.src = "https://www.youtube.com/embed/" + v.id + "?autoplay=1";
-        iframe.allowFullscreen = true;
-        iframe.width = "100%";
-        iframe.height = "200";
-        this.replaceWith(iframe);
-      };
-      gallery.appendChild(card);
-    }
-
-    document.getElementById("pageInfo").textContent =
-      `Page ${currentPage} of ${Math.ceil(videoData.length / pageSize)}`;
-
-    document.getElementById("prevPage").disabled = currentPage === 1;
-    document.getElementById("nextPage").disabled = currentPage === Math.ceil(videoData.length / pageSize);
+      </div>
+    `;
+    card.querySelector(".vid-thumb").onclick = function(){
+      const iframe = document.createElement("iframe");
+      iframe.src = `https://www.youtube.com/embed/${v.id}?autoplay=1`;
+      iframe.allow = "autoplay; fullscreen";
+      iframe.className = "vid-embed";
+      this.replaceWith(iframe);
+    };
+    gallery.appendChild(card);
   }
 
-  document.getElementById("prevPage").onclick = () => {
-    if (currentPage > 1) {
-      currentPage--;
-      renderGallery(currentPage);
-    }
-  };
+  const total = Math.ceil(videoData.length / pageSize);
+  document.getElementById("pageInfo").textContent = `${currentPage} / ${total}`;
+  document.getElementById("prevPage").disabled = currentPage === 1;
+  document.getElementById("nextPage").disabled = currentPage === total;
+}
 
-  document.getElementById("nextPage").onclick = () => {
-    if (currentPage * pageSize < videoData.length) {
-      currentPage++;
-      renderGallery(currentPage);
-    }
-  };
-    // Initial render
-    renderGallery(currentPage);
-  </script>
-  <script>
-  const loginTab = document.getElementById("loginTab");
-  const signupTab = document.getElementById("signupTab");
-  const loginForm = document.getElementById("loginForm");
-  const signupForm = document.getElementById("signupForm");
+document.getElementById("prevPage").onclick = () => { if(currentPage > 1){ currentPage--; renderGallery(currentPage); }};
+document.getElementById("nextPage").onclick = () => { if(currentPage * pageSize < videoData.length){ currentPage++; renderGallery(currentPage); }};
+renderGallery(1);
 
-  loginTab.onclick = () => {
-    loginTab.classList.add("active");
-    signupTab.classList.remove("active");
-    loginForm.classList.remove("hidden");
-    signupForm.classList.add("hidden");
-  };
+/* ── AUTH ─────────────────────────────────────────────────── */
+function openAuth(){ document.getElementById("authOverlay").classList.add("open"); }
+function closeAuth(){ document.getElementById("authOverlay").classList.remove("open"); }
 
-  signupTab.onclick = () => {
-    signupTab.classList.add("active");
-    loginTab.classList.remove("active");
-    signupForm.classList.remove("hidden");
-    loginForm.classList.add("hidden");
-  };
+document.getElementById("authOverlay").addEventListener("click", function(e){
+  if(e.target === this) closeAuth();
+});
 
+function showLogin(){
+  document.getElementById("loginForm").classList.remove("hidden");
+  document.getElementById("signupForm").classList.add("hidden");
+  document.getElementById("loginTab").classList.add("active");
+  document.getElementById("signupTab").classList.remove("active");
+}
 
-  function openAuth() {
-    document.getElementById("authModal").style.display = "flex";
-  }
+function showSignup(){
+  document.getElementById("signupForm").classList.remove("hidden");
+  document.getElementById("loginForm").classList.add("hidden");
+  document.getElementById("signupTab").classList.add("active");
+  document.getElementById("loginTab").classList.remove("active");
+}
 
-  function closeAuth() {
-    document.getElementById("authModal").style.display = "none";
-  }
-
-  function showLogin() {
-    document.getElementById("loginForm").classList.remove("hidden");
-    document.getElementById("signupForm").classList.add("hidden");
-    document.getElementById("loginTab").classList.add("active");
-    document.getElementById("signupTab").classList.remove("active");
-  }
-
-  function showSignup() {
-    document.getElementById("signupForm").classList.remove("hidden");
-    document.getElementById("loginForm").classList.add("hidden");
-    document.getElementById("signupTab").classList.add("active");
-    document.getElementById("loginTab").classList.remove("active");
-  }
-
-  // DEMO FUNCTIONALITY
- document.getElementById("loginForm").onsubmit = e => {
+function handleLogin(e){
   e.preventDefault();
-
-  const email = document.querySelector("#loginForm input[type='email']").value;
-
-  let users = JSON.parse(localStorage.getItem("users")) || [];
-
-  if(!users.includes(email)){
-    users.push(email);
-    localStorage.setItem("users", JSON.stringify(users));
-  }
-
+  const email = e.target.querySelector('input[type="email"]').value;
+  let users = JSON.parse(localStorage.getItem("users") || "[]");
+  if(!users.includes(email)) users.push(email);
+  localStorage.setItem("users", JSON.stringify(users));
   localStorage.setItem("currentUser", email);
-
-  alert("Login successful");
+  alert("Login successful! Welcome back.");
   closeAuth();
-};
-  document.getElementById("signupForm").onsubmit = e => {
-    e.preventDefault();
-    alert("Account created (demo)");
-    showLogin();
-  };
-</script>
-
-
-
-
-
-
-</script>
-
-</script>
-
-<script>
-function enterUser(){
-  document.getElementById("rolePage").style.display="none";
 }
 
-function enterAdmin(){
-  window.location.href="admin.html";
-}
-</script>
-
-<script>
-function enterUser(){
-  document.getElementById("rolePage").style.display="none";
+function handleSignup(e){
+  e.preventDefault();
+  alert("Account created! You can now log in.");
+  showLogin();
 }
 
-function enterAdmin(){
-  var pass = prompt("Enter Admin Password:");
+/* ── SCROLL REVEAL ────────────────────────────────────────── */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add("visible"); });
+}, { threshold: 0.1 });
 
-  if(pass === "abhishek@9495"){
-    window.location.href = "admin.html";
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+/* ── MOBILE MENU ──────────────────────────────────────────── */
+function toggleMobile(){
+  const nl = document.querySelector(".nav-links");
+  if(!nl) return;
+  if(nl.style.display === "flex"){
+    nl.style.display = "";
   } else {
-    alert("Wrong Password");
+    nl.style.cssText = "display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:rgba(8,12,16,.97);padding:24px 5vw;gap:1.2rem;border-bottom:1px solid rgba(255,255,255,.07);z-index:999;";
+    nl.querySelectorAll("a").forEach(a => a.addEventListener("click", () => { nl.style.display = ""; }, {once:true}));
   }
 }
 </script>
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
-}
-
-/* Animated background */
-
-#rolePage{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-overflow:hidden;
-z-index:9999;
-
-background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-}
-
-/* floating circles background */
-
-#rolePage::before,
-#rolePage::after{
-content:"";
-position:absolute;
-width:600px;
-height:600px;
-background:radial-gradient(circle,#00c6ff55,transparent 70%);
-animation:float 8s infinite linear;
-}
-
-#rolePage::after{
-right:-200px;
-bottom:-200px;
-animation-delay:4s;
-}
-
-@keyframes float{
-0%{transform:translateY(0px)}
-50%{transform:translateY(-40px)}
-100%{transform:translateY(0px)}
-}
-
-/* Glass card */
-
-.roleCard{
-width:380px;
-padding:45px;
-text-align:center;
-
-background:rgba(255,255,255,0.05);
-border-radius:18px;
-
-backdrop-filter:blur(18px);
-
-border:1px solid rgba(255,255,255,0.15);
-
-box-shadow:
-0 20px 60px rgba(0,0,0,0.5);
-
-color:white;
-
-animation:cardEntrance 1s ease;
-}
-
-@keyframes cardEntrance{
-
-from{
-opacity:0;
-transform:translateY(40px) scale(.95);
-}
-
-to{
-opacity:1;
-transform:translateY(0) scale(1);
-}
-
-}
-
-/* Title */
-
-.roleCard h2{
-font-size:28px;
-margin-bottom:10px;
-letter-spacing:1px;
-}
-
-.subtitle{
-font-size:14px;
-opacity:.7;
-margin-bottom:30px;
-}
-
-/* Buttons */
-
-.roleBtn{
-width:100%;
-padding:14px;
-margin:12px 0;
-border:none;
-border-radius:10px;
-font-size:15px;
-font-weight:600;
-cursor:pointer;
-position:relative;
-overflow:hidden;
-transition:.35s;
-color:white;
-}
-
-/* User button */
-
-.userBtn{
-background:linear-gradient(135deg,#00c6ff,#0072ff);
-box-shadow:0 10px 25px rgba(0,114,255,.4);
-}
-
-.userBtn:hover{
-transform:translateY(-3px);
-box-shadow:0 18px 35px rgba(0,114,255,.6);
-}
-
-/* Admin button */
-
-.adminBtn{
-background:linear-gradient(135deg,#ff416c,#ff4b2b);
-box-shadow:0 10px 25px rgba(255,75,43,.4);
-}
-
-.adminBtn:hover{
-transform:translateY(-3px);
-box-shadow:0 18px 35px rgba(255,75,43,.6);
-}
-
-/* Button ripple animation */
-
-.roleBtn::after{
-content:"";
-position:absolute;
-width:0;
-height:0;
-background:rgba(255,255,255,.4);
-border-radius:50%;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-opacity:0;
-transition:.6s;
-}
-
-.roleBtn:active::after{
-width:300px;
-height:300px;
-opacity:0;
-}
-
-/* Footer text */
-
-.footer{
-margin-top:20px;
-font-size:12px;
-opacity:.5;
-}
-
-</style>
-
 </body>
-
-<!-- USER ADMIN FIRST PAGE -->
-
-
-
-</html>
 </html>
